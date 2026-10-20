@@ -14,6 +14,18 @@ Public website of the Wheatlands Homeowners Association (991 homes, Aurora, IL).
 
 Every push to `main` builds and publishes automatically (about 20 s). Board-editor drafts live on `cms/*` branches until published.
 
+### Preview first, then publish
+
+Mike wants to see changes before they go live. For any site change:
+
+1. Commit to a new branch (`claude/<short-topic>`), push it, and open a pull request into `main` (REST API: `gh api repos/Bleacherbum2021/wheatlands-hoa-website/pulls -f head=… -f base=main -f title=… -f body=…`).
+2. Netlify builds a Deploy Preview for the pull request at `https://deploy-preview-<PR number>--wheatlands-hoa.netlify.app`. Wait for it, spot-check it, and send Mike that link.
+3. Merge into `main` only after Mike approves. That is the publish.
+
+Group related changes into one pull request: each publish to `main` uses 15 of the free plan's 300 monthly credits, and running out takes the site offline until the next month. Deploy previews are not listed as costing credits. Notes-only changes (this file, README) can go straight to `main`.
+
+Local preview: `npm install && npm start`, then http://localhost:8080 (refreshes on save).
+
 ## Build
 
 - Eleventy 3.1.6, Nunjucks templates, ESM config (`eleventy.config.js`). `npm install && npm start` for local preview; Netlify runs `npm run build` and publishes `_site/`.
@@ -37,7 +49,7 @@ Every push to `main` builds and publishes automatically (about 20 s). Board-edit
 - Dates are ISO `YYYY-MM-DD` strings.
 - No private homeowner information (balances, violations, personal phone numbers).
 - Pin any CDN script to an exact version.
-- After pushing, confirm the Netlify deploy is `ready` and spot-check the changed page.
+- Preview first (see above). After merging, confirm the Netlify deploy is `ready` and spot-check the changed page.
 - Commit messages: plain English describing the content change (board members see the history).
 
 ## Open items

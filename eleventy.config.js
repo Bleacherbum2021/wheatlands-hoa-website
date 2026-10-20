@@ -11,6 +11,70 @@ function parts(iso) {
   return { y, m, d, dow };
 }
 
+// ------------------------------------------------------------ Calendar helpers
+const CAL_TZ = "America/Chicago";
+const MEETING_MINUTES = 60; // calendar entries are one hour long
+const VTIMEZONE_CHICAGO = [
+  "BEGIN:VTIMEZONE", "TZID:America/Chicago",
+  "BEGIN:DAYLIGHT", "TZOFFSETFROM:-0600", "TZOFFSETTO:-0500", "TZNAME:CDT", "DTSTART:19700308T020000", "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", "END:DAYLIGHT",
+  "BEGIN:STANDARD", "TZOFFSETFROM:-0500", "TZOFFSETTO:-0600", "TZNAME:CST", "DTSTART:19701101T020000", "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU", "END:STANDARD",
+  "END:VTIMEZONE",
+];
+const pad = (n) => String(n).padStart(2, "0");
+
+// "7:00 PM" -> minutes after midnight (defaults to 7:00 PM)
+function parseTime(t) {
+  const m = String(t || "").match(/(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m/i);
+  if (!m) return 19 * 60;
+  let h = Number(m[1]) % 12;
+  if (m[3].toLowerCase() === "p") h += 12;
+  return h * 60 + Number(m[2] || 0);
+}
+
+// Local Central-time stamp (YYYYMMDDTHHMMSS) for a date plus minutes
+function localStamp(iso, minutes) {
+  const [y, mo, d] = String(iso).slice(0, 10).split("-").map(Number);
+  const dt = new Date(Date.UTC(y, mo - 1, d, 0, minutes));
+  return `${dt.getUTCFullYear()}${pad(dt.getUTCMonth() + 1)}${pad(dt.getUTCDate())}T${pad(dt.getUTCHours())}${pad(dt.getUTCMinutes())}00`;
+}
+
+function calEvent(m, time, siteUrl) {
+  const iso = String(m.date).slice(0, 10);
+  const startMin = parseTime(time);
+  const kind = m.type === "open" ? "Open meeting, all homeowners welcome." : "Board work session.";
+  const details = [
+    m.note ? `${m.note}.`.replace(/\.\.$/, ".") : "",
+    kind,
+    m.join_url ? `Join: ${m.join_url}` : "The join link will be posted on the HOA website before the meeting.",
+    m.dial_in || "",
+    `Details: ${siteUrl}/meetings.html`,
+  ].filter(Boolean).join("\n");
+  return {
+    uid: `meeting-${iso}@wheatlandshoa.org`,
+    title: `Wheatlands HOA: ${m.title}`,
+    start: localStamp(iso, startMin),
+    end: localStamp(iso, startMin + MEETING_MINUTES),
+    details,
+    location: m.join_url || (/in person/i.test(m.note || "") ? "In person" : "Online"),
+  };
+}
+
+// iCalendar text escaping and 75-octet line folding
+const icsText = (s) => String(s || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+function fold(line) {
+  const bytes = Buffer.from(line, "utf8");
+  if (bytes.length <= 75) return line;
+  const out = [];
+  let cur = "", len = 0, limit = 75;
+  for (const ch of line) {
+    const n = Buffer.byteLength(ch, "utf8");
+    if (len + n > limit) { out.push(cur); cur = ""; len = 0; limit = 74; }
+    cur += ch; len += n;
+  }
+  out.push(cur);
+  return out.join("\r\n ");
+}
+
 export default function (eleventyConfig) {
   // Static files copied as-is
   eleventyConfig.addPassthroughCopy("src/assets");
@@ -55,6 +119,46 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("telHref", (p) => "tel:+1" + String(p || "").replace(/\D/g, "").replace(/^1/, "").slice(0, 10));
 
   eleventyConfig.addGlobalData("buildDate", () => new Date().toISOString().slice(0, 10));
+
+  // ---------------------------------------------------------------- Calendar
+  // Public address of the site. Netlify sets URL to the primary domain, so this
+  // becomes https://wheatlandshoa.org on its own once the domain is switched.
+  eleventyConfig.addGlobalData("siteUrl", () => (process.env.URL || "https://wheatlands-hoa.netlify.app").replace(/\/$/, ""));
+
+  // Meetings that belong on a calendar (skips "No meeting this month" entries)
+  eleventyConfig.addFilter("calendarMeetings", (arr) =>
+    [...(arr || [])].filter((m) => m.type !== "none" && m.date).sort((a, b) => String(a.date).localeCompare(String(b.date))));
+  eleventyConfig.addFilter("calFile", (m) => `/calendar/${String(m.date).slice(0, 10)}.ics`);
+  eleventyConfig.addFilter("googleCalUrl", (m, time, siteUrl) => {
+    const ev = calEvent(m, time, siteUrl);
+    const q = new URLSearchParams({
+      action: "TEMPLATE",
+      text: ev.title,
+      dates: `${ev.start}/${ev.end}`,
+      ctz: CAL_TZ,
+      details: ev.details,
+      location: ev.location,
+    });
+    return `https://calendar.google.com/calendar/render?${q}`;
+  });
+  // Full .ics calendar text for one or more meetings
+  eleventyConfig.addFilter("ics", (arr, time, siteUrl, name) => {
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Wheatlands HOA//Meetings//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+    if (name) lines.push(`X-WR-CALNAME:${icsText(name)}`, `X-WR-TIMEZONE:${CAL_TZ}`, "REFRESH-INTERVAL;VALUE=DURATION:PT12H", "X-PUBLISHED-TTL:PT12H");
+    lines.push(...VTIMEZONE_CHICAGO);
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+    for (const m of arr || []) {
+      const ev = calEvent(m, time, siteUrl);
+      lines.push("BEGIN:VEVENT", `UID:${ev.uid}`, `DTSTAMP:${stamp}`,
+        `DTSTART;TZID=${CAL_TZ}:${ev.start}`, `DTEND;TZID=${CAL_TZ}:${ev.end}`,
+        `SUMMARY:${icsText(ev.title)}`, `DESCRIPTION:${icsText(ev.details)}`);
+      if (ev.location) lines.push(`LOCATION:${icsText(ev.location)}`);
+      if (m.join_url) lines.push(`URL:${m.join_url}`);
+      lines.push("END:VEVENT");
+    }
+    lines.push("END:VCALENDAR");
+    return lines.map(fold).join("\r\n") + "\r\n";
+  });
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },

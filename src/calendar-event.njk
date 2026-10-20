@@ -1,0 +1,13 @@
+---js
+{
+  pagination: {
+    data: "meetings.meetings",
+    size: 1,
+    alias: "m",
+    before: (items) => items.filter((m) => m.type !== "none" && m.date),
+  },
+  permalink: (data) => `/calendar/${String(data.m.date).slice(0, 10)}.ics`,
+  eleventyExcludeFromCollections: true,
+}
+---
+{{ [m] | ics(meetings.time, siteUrl) | safe }}

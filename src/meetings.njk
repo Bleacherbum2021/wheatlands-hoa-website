@@ -16,14 +16,23 @@ permalink: /meetings.html
           {%- if m.type == "none" %}
           <li><span class="when">{{ d | monthAbbr }}</span><span class="what"><b>{{ m.title }}</b></span><span><span class="tag muted">None</span></span></li>
           {%- else %}
-          <li data-date="{{ d }}"><span class="when">{{ d | shortDate }}</span><span class="what"><b>{{ m.title }}</b><small>{% if m.note %}{{ m.note }} &middot; {% endif %}{{ meetings.time }}</small></span><span>{% if m.join_url %}<a class="btn dark" style="padding:6px 12px;font-size:.9rem" href="{{ m.join_url }}" target="_blank" rel="noopener">{{ m.join_label or "Join" }}</a>{% elif m.type == "open" %}<span class="tag open">Open meeting</span>{% else %}<span class="tag">Work session</span>{% endif %}</span></li>
+          <li data-date="{{ d }}"><span class="when">{{ d | shortDate }}</span><span class="what"><b>{{ m.title }}</b><small>{% if m.note %}{{ m.note }} &middot; {% endif %}{{ meetings.time }}<span data-cal> &middot; <a href="{{ m | calFile }}" download>Add to calendar</a></span></small></span><span>{% if m.join_url %}<a class="btn dark" style="padding:6px 12px;font-size:.9rem" href="{{ m.join_url }}" target="_blank" rel="noopener">{{ m.join_label or "Join" }}</a>{% elif m.type == "open" %}<span class="tag open">Open meeting</span>{% else %}<span class="tag">Work session</span>{% endif %}</span></li>
           {%- endif %}
         {%- endfor %}
         </ul>
         <p class="small muted" style="margin-top:14px">{{ meetings.note }}</p>
       </div>
       <div class="stack">
-        {{ nextMeeting(meetings.meetings, buildDate, meetings.time) }}
+        {{ nextMeeting(meetings.meetings, buildDate, meetings.time, siteUrl) }}
+        <div class="card" id="calendar">
+          <h3>Get meetings in your calendar</h3>
+          <p>Subscribe once and every HOA meeting shows up in your calendar. When the Board adds or changes a meeting, your calendar updates on its own.</p>
+          <div class="btn-row" style="margin-top:12px">
+            <a class="btn dark" href="{{ siteUrl | replace('https://', 'webcal://') }}/meetings.ics">Outlook or Apple Calendar</a>
+            <a class="btn outline" href="https://calendar.google.com/calendar/render?cid={{ (siteUrl | replace('https://', 'webcal://') + '/meetings.ics') | urlencode }}" target="_blank" rel="noopener">Google Calendar</a>
+          </div>
+          <p class="small muted" style="margin-top:12px">Other calendar apps: subscribe to <a href="/meetings.ics">{{ siteUrl }}/meetings.ics</a>. To add just one meeting, use the &ldquo;Add to calendar&rdquo; link next to it.</p>
+        </div>
         <div class="card">
           <h3>About meeting minutes</h3>
           <p>{{ minutes.approval_note }}</p>

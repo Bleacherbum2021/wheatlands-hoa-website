@@ -7,7 +7,7 @@ Public website of the Wheatlands Homeowners Association (991 homes, Aurora, IL).
 | What | Where |
 | --- | --- |
 | Live site | https://wheatlands-hoa.netlify.app (custom domain wheatlandshoa.org not yet pointed here; old site still on Weebly) |
-| Repo | github.com/Bleacherbum2021/wheatlands-hoa-website, branch `main` |
+| Repo | github.com/Bleacherbum2021/wheatlands-hoa-website, branch `main`. **Public** (Netlify's free plan only builds one contributor's commits on private repos), so never commit anything that shouldn't be on the public site, drafts included. Ignore the stray `wheatlands-hoa` repo; Netlify does not use it. |
 | Hosting | Netlify project `wheatlands-hoa`, site id `21ac6918-e487-4485-ba18-defaca57b937`, team `mhylek` (free plan) |
 | Board editor | `/admin` (Decap CMS 3.16.3, git-gateway + Netlify Identity, invite-only, editorial workflow) |
 | Contact form | Netlify Forms, form name `question`, posts to `/thanks.html` |

@@ -4,3 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Calendar files open in Outlook / Apple Calendar / Google Calendar
+[[headers]]
+  for = "/*.ics"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"

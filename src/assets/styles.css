@@ -274,3 +274,7 @@ code.pass { font-family: ui-monospace, Consolas, monospace; background: var(--wh
 .anchor { scroll-margin-top: 20px; }
 .prose-inline p { margin: 0 0 1em; }
 .prose-inline p:last-child { margin-bottom: 0; }
+
+/* Add-to-calendar links */
+.cal-links { margin: 14px 0 0; color: var(--ink-soft); }
+.cal-links svg { width: 16px; height: 16px; vertical-align: -3px; margin-right: 2px; }

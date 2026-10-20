@@ -1,0 +1,5 @@
+---
+permalink: /meetings.ics
+eleventyExcludeFromCollections: true
+---
+{{ meetings.meetings | calendarMeetings | ics(meetings.time, siteUrl, "Wheatlands HOA meetings") | safe }}

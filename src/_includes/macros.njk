@@ -24,7 +24,7 @@
 {%- endmacro -%}
 
 {#- Next-meeting cards: one per upcoming meeting; site.js shows only the soonest. -#}
-{%- macro nextMeeting(meetings, buildDate, time) -%}
+{%- macro nextMeeting(meetings, buildDate, time, siteUrl) -%}
 {%- set list = meetings | byDate -%}
 {%- set first = meetings | firstUpcoming(buildDate) -%}
 {%- for m in list %}{% if m.type != "none" %}{% set d = m.date | isoDate %}
@@ -40,6 +40,7 @@
       {% if m.join_url %}<a class="btn" href="{{ m.join_url }}" target="_blank" rel="noopener">{{ m.join_label or "Join meeting" }}</a>{% else %}<span class="small">Join link will be posted before the meeting.</span>{% endif %}
       <a class="btn outline" href="/meetings.html">Full schedule</a>
     </div>
+    <p class="cal-links small">{{ icon("cal") }} Add to my calendar: <a href="{{ m | calFile }}" download>Outlook or Apple</a> &middot; <a href="{{ m | googleCalUrl(time, siteUrl) }}" target="_blank" rel="noopener">Google</a></p>
   </div>
 </div>
 {%- endif %}{% endfor %}

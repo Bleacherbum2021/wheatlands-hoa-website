@@ -37,6 +37,7 @@
     }
   });
   document.querySelectorAll('#schedule li.past').forEach(function (li) {
+    li.querySelectorAll('[data-cal]').forEach(function (el) { el.hidden = true; });
     var b = li.querySelector('.btn');
     if (b) { var t = document.createElement('span'); t.className = 'tag done'; t.textContent = 'Held'; b.replaceWith(t); }
     else { var tag = li.querySelector('.tag'); if (tag) { tag.className = 'tag done'; tag.textContent = 'Held'; } }

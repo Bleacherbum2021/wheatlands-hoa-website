@@ -10,6 +10,24 @@
     });
   }
 
+  // Share buttons: phones get the native share sheet (Facebook app -> group); others get Facebook's share window
+  document.querySelectorAll('[data-share]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        e.preventDefault();
+        navigator.share({ title: a.getAttribute('data-share-title'), url: a.getAttribute('data-share-url') }).catch(function () {});
+      }
+    });
+  });
+  document.querySelectorAll('[data-copy-link]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var url = b.getAttribute('data-copy-link'), label = b.textContent;
+      var done = function () { b.textContent = 'Link copied'; setTimeout(function () { b.textContent = label; }, 2000); };
+      if (navigator.clipboard) { navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link:', url); }); }
+      else { window.prompt('Copy this link:', url); }
+    });
+  });
+
   // Footer year
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

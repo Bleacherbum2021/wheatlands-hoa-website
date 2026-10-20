@@ -39,6 +39,7 @@ Local preview: `npm install && npm start`, then http://localhost:8080 (refreshes
 - `src/_includes/base.njk` (layout, nav, footer) and `macros.njk` (doc lists, next-meeting cards, minutes years, updates).
 - Pages: `index`, `about`, `meetings`, `assessments`, `documents`, `news`, `contacts`, `thanks` (`.njk`, permalinks `/x.html`).
 - Calendar: `src/meetings-ics.njk` builds `/meetings.ics` (subscribable feed, all meetings) and `src/calendar-event.njk` builds `/calendar/<date>.ics` per meeting, both from `meetings.json`; filters `ics`, `calFile`, `googleCalUrl` in `eleventy.config.js`. Entries are one hour, Central time; `siteUrl` comes from Netlify's `URL`, so links follow the custom domain after cutover.
+- News posts: `src/news-post.njk` gives each `news.json` post its own page at `/news/<date>-<title-slug>.html` (slug from the `postSlug` filter) with Facebook link-preview tags; `shareRow` macro adds Share on Facebook / Copy link (phones use the native share sheet). Changing a post's title or date changes its URL. Facebook doesn't allow apps to post to groups, so sharing to the HOA group is a manual tap.
 - `src/assets/site.js`: mobile menu; marks past meetings "Held", shows the soonest upcoming meeting card, labels past events (runs client-side, Central time, so the site stays current between builds).
 - `src/assets/styles.css`: design tokens on `:root` (wheat + prairie green, Source Serif 4 + Public Sans; flat, square-cornered, no shadows or uppercase labels). Reuse existing classes; don't add a framework.
 

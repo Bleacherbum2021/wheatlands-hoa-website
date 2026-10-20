@@ -69,3 +69,12 @@
 {%- endfor %}
 </ul>
 {%- endmacro -%}
+
+
+{#- Share buttons for a news post. On phones "Share" opens the phone's share sheet (pick Facebook, then the group); elsewhere it opens Facebook's share window. -#}
+{%- macro shareRow(url, title) -%}
+<div class="share-row">
+  <a class="btn dark" href="{{ url | facebookShareUrl }}" target="_blank" rel="noopener" data-share data-share-url="{{ url }}" data-share-title="{{ title }}">Share on Facebook</a>
+  <button type="button" class="btn outline" data-copy-link="{{ url }}">Copy link</button>
+</div>
+{%- endmacro -%}

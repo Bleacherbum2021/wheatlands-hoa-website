@@ -278,3 +278,7 @@ code.pass { font-family: ui-monospace, Consolas, monospace; background: var(--wh
 /* Add-to-calendar links */
 .cal-links { margin: 14px 0 0; color: var(--ink-soft); }
 .cal-links svg { width: 16px; height: 16px; vertical-align: -3px; margin-right: 2px; }
+
+/* Share buttons on news posts */
+.share-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.share-row .btn { padding: 7px 14px; font-size: .92rem; }

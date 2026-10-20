@@ -10,6 +10,22 @@
     });
   }
 
+  // Share button: the device's own share menu; falls back to copying the link
+  document.querySelectorAll('[data-share]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = btn.getAttribute('data-share-url'), title = btn.getAttribute('data-share-title');
+      var html = btn.innerHTML;
+      var copied = function () { btn.textContent = 'Link copied'; setTimeout(function () { btn.innerHTML = html; }, 2000); };
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).catch(function () {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(copied, function () { window.prompt('Copy this link:', url); });
+      } else {
+        window.prompt('Copy this link:', url);
+      }
+    });
+  });
+
   // Footer year
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

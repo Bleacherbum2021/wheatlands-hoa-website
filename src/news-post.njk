@@ -1,0 +1,30 @@
+---js
+{
+  layout: "base.njk",
+  navKey: "/news.html",
+  pagination: { data: "news.posts", size: 1, alias: "p" },
+  permalink: (data) => `/news/${slugFor(data.p)}.html`,
+  eleventyComputed: {
+    title: (data) => `${data.p.title} – The Wheatlands HOA`,
+    ogTitle: (data) => data.p.title,
+    description: "{{ p.body | summary }}",
+  },
+  eleventyExcludeFromCollections: true,
+}
+function slugFor(p) {
+  const words = String(p.title || "post").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60).replace(/-+$/, "");
+  return `${String(p.date).slice(0, 10)}-${words || "post"}`;
+}
+---
+{%- from "macros.njk" import docList, shareRow -%}
+{%- set url = siteUrl + "/news/" + (p | postSlug) + ".html" -%}
+<section class="page-head"><div class="container"><p class="small" style="margin-bottom:6px"><a href="/news.html">&larr; News &amp; Events</a></p><h1>{{ p.title }}</h1><p>Posted {{ p.date | isoDate | niceDate }}</p></div></section>
+<section class="section">
+  <div class="container">
+    <article class="prose">
+      {{ p.body | md | safe }}
+      {% if p.file %}<div style="margin-top:1.4em">{{ docList([{ file: p.file, title: p.file_label or "Attachment", note: "" }]) }}</div>{% endif %}
+      {{ shareRow(url, p.title) }}
+    </article>
+  </div>
+</section>

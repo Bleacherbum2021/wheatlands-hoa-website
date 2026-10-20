@@ -125,6 +125,18 @@ export default function (eleventyConfig) {
   // becomes https://wheatlandshoa.org on its own once the domain is switched.
   eleventyConfig.addGlobalData("siteUrl", () => (process.env.URL || "https://wheatlands-hoa.netlify.app").replace(/\/$/, ""));
 
+  // ---------------------------------------------------------------- News posts
+  // Each news post gets its own page (/news/<date>-<title>.html) so it can be shared
+  eleventyConfig.addFilter("postSlug", (p) => {
+    const words = String(p.title || "post").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60).replace(/-+$/, "");
+    return `${String(p.date).slice(0, 10)}-${words || "post"}`;
+  });
+  // Plain-text summary of a markdown field (for link previews)
+  eleventyConfig.addFilter("summary", (s, max = 200) => {
+    const text = md.render(String(s || "")).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&rsquo;|&lsquo;/g, "'").replace(/\s+/g, " ").trim();
+    return text.length > max ? text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…" : text;
+  });
+
   // Meetings that belong on a calendar (skips "No meeting this month" entries)
   eleventyConfig.addFilter("calendarMeetings", (arr) =>
     [...(arr || [])].filter((m) => m.type !== "none" && m.date).sort((a, b) => String(a.date).localeCompare(String(b.date))));

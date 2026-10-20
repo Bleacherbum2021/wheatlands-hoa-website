@@ -1,0 +1,67 @@
+---
+layout: base.njk
+title: Contact – The Wheatlands HOA
+description: Contact the Wheatlands HOA property manager, Board, and City of Aurora.
+permalink: /contacts.html
+---
+{%- from "macros.njk" import pageHead -%}
+{%- set pm = site.property_manager -%}
+{{ pageHead("Contact", "Who to call for what: our property manager, the Board, and the City of Aurora.") }}
+<section class="section">
+  <div class="container">
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="eyebrow" style="color:var(--wheat-700);margin-bottom:8px">Property manager</div>
+        <div class="person"><span class="avatar">{{ pm.name | initials }}</span><div><b>{{ pm.name }}</b><small>{{ pm.title }}, {{ pm.company }}</small></div></div>
+        <p style="margin-top:14px"><a href="{{ pm.phone | telHref }}">{{ pm.phone }}</a><br><a href="mailto:{{ pm.email }}">{{ pm.email }}</a></p>
+        <p class="small muted mb-0">Balances, payment plans, account questions. Resident Service Center: {{ pm.hours }}.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow" style="color:var(--wheat-700);margin-bottom:8px">HOA Board</div>
+        <div class="person role-lead"><span class="avatar">{{ contacts.board_contact.name | initials }}</span><div><b>{{ contacts.board_contact.name }}</b><small>{{ contacts.board_contact.role }}</small></div></div>
+        <p style="margin-top:14px"><a href="mailto:{{ site.board_email }}">{{ site.board_email }}</a></p>
+        <p class="small muted mb-0">Community questions, suggestions and Board matters.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow" style="color:var(--wheat-700);margin-bottom:8px">City of Aurora</div>
+        {%- for c in contacts.city %}
+        <p{% if loop.last %} class="mb-0"{% endif %}><b>{{ c.name }}</b>{% if c.role and c.role != "City of Aurora" %}, {{ c.role }}{% endif %}<br>
+          {%- if c.phone %}<a href="{{ c.phone | telHref }}">{{ c.phone_display or c.phone }}</a>{% endif %}
+          {%- if c.email %} &middot; <a href="mailto:{{ c.email }}">Email</a>{% endif %}
+          {%- if c.url %}<br><a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.url | replace("https://", "") | replace("www.", "") | replace("/", "") }}</a>{% endif %}</p>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="container">
+    <div class="grid cols-2" style="gap:40px;align-items:start">
+      <div id="question" class="anchor">
+        <h2>Have a question?</h2>
+        <p class="muted">Send a note to the Board. For account balances or payments, please contact {{ pm.company }} directly.</p>
+        <form class="form" name="question" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company">
+          <input type="hidden" name="form-name" value="question">
+          <p hidden><label>Leave blank <input name="company"></label></p>
+          <div class="row">
+            <label>First name<input name="first_name" autocomplete="given-name" required></label>
+            <label>Last name<input name="last_name" autocomplete="family-name" required></label>
+          </div>
+          <div class="row">
+            <label>Email<input type="email" name="email" autocomplete="email" required></label>
+            <label>Phone <span class="hint">Optional</span><input type="tel" name="phone" autocomplete="tel"></label>
+          </div>
+          <label>Street address in the Wheatlands<input name="address" autocomplete="street-address"></label>
+          <label>Your question or comment<textarea name="comment" required></textarea></label>
+          <div><button class="btn dark" type="submit">Send to the Board</button></div>
+        </form>
+      </div>
+      <div>
+        <h2>Where we are</h2>
+        <p class="muted">{{ contacts.location }}</p>
+        <iframe class="map" title="Map of the Wheatlands HOA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=41.7210242,-88.2547192&amp;z=15&amp;output=embed"></iframe>
+        <p class="small" style="margin-top:10px"><a href="/uploads/7/2/1/6/7216816/site_map_-_clean.pdf" target="_blank" rel="noopener">Download the community site map (PDF)</a></p>
+      </div>
+    </div>
+  </div>
+</section>

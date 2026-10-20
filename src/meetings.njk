@@ -1,0 +1,43 @@
+---
+layout: base.njk
+title: Meetings & Minutes – The Wheatlands HOA
+description: Wheatlands HOA open meeting and work session schedule, join links, and meeting minutes.
+permalink: /meetings.html
+---
+{%- from "macros.njk" import pageHead, nextMeeting, icon, minutesYear -%}
+{{ pageHead("Meetings & Minutes", "All meetings start at " + meetings.time + " Central. Every homeowner is welcome at open meetings.") }}
+<section class="section">
+  <div class="container">
+    <div class="grid cols-2" style="gap:40px;align-items:start">
+      <div>
+        <h2>{{ meetings.year }} schedule</h2>
+        <ul class="schedule" id="schedule">
+        {%- for m in meetings.meetings | byDate %}{% set d = m.date | isoDate %}
+          {%- if m.type == "none" %}
+          <li><span class="when">{{ d | monthAbbr }}</span><span class="what"><b>{{ m.title }}</b></span><span><span class="tag muted">None</span></span></li>
+          {%- else %}
+          <li data-date="{{ d }}"><span class="when">{{ d | shortDate }}</span><span class="what"><b>{{ m.title }}</b><small>{% if m.note %}{{ m.note }} &middot; {% endif %}{{ meetings.time }}</small></span><span>{% if m.join_url %}<a class="btn dark" style="padding:9px 16px;font-size:.92rem" href="{{ m.join_url }}" target="_blank" rel="noopener">{{ m.join_label or "Join" }}</a>{% elif m.type == "open" %}<span class="tag open">Open meeting</span>{% else %}<span class="tag">Work session</span>{% endif %}</span></li>
+          {%- endif %}
+        {%- endfor %}
+        </ul>
+        <p class="small muted" style="margin-top:14px">{{ meetings.note }}</p>
+      </div>
+      <div class="stack">
+        {{ nextMeeting(meetings.meetings, buildDate, meetings.time) }}
+        <div class="card">
+          <h3>About meeting minutes</h3>
+          <p>{{ minutes.approval_note }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section alt" id="minutes">
+  <div class="container">
+    <div class="section-head"><h2>Minutes archive</h2><p>Select a year to see its posted minutes.</p></div>
+    {%- set years = minutes.years | byYearDesc %}
+    {%- for y in years | yearsFrom(2021) %}{{ minutesYear(y, loop.first) }}{% endfor %}
+    <details class="year-block"><summary>2021 – 2025<span class="count">On the Resident Portal</span>{{ icon("chev") }}</summary><div style="padding:0 22px 22px"><div class="prose-inline">{{ minutes.portal_note | md | safe }}</div><div class="btn-row" style="margin-top:14px"><a class="btn dark" href="{{ site.portal_documents_url }}" target="_blank" rel="noopener">Open the Resident Portal</a></div></div></details>
+    {%- for y in years | yearsBefore(2021) %}{{ minutesYear(y, false) }}{% endfor %}
+  </div>
+</section>

@@ -1,0 +1,9 @@
+---
+pagination:
+  data: redirects
+  size: 1
+  alias: r
+permalink: "/{{ r[0] }}"
+eleventyExcludeFromCollections: true
+---
+<!doctype html><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="{{ r[1] }}"><meta http-equiv="refresh" content="0; url={{ r[1] }}"><p>This page moved to <a href="{{ r[1] }}">{{ r[1] }}</a>.</p>

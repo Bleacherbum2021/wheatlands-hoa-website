@@ -1,0 +1,70 @@
+{%- macro icon(name) -%}
+{%- if name == "card" -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+{%- elif name == "cal" -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+{%- elif name == "doc" -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+{%- elif name == "phone" -%}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+{%- elif name == "dl" -%}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+{%- elif name == "check" -%}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+{%- elif name == "clock" -%}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+{%- elif name == "chev" -%}<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro pageHead(title, sub) -%}
+<section class="page-head"><div class="container"><h1>{{ title }}</h1><p>{{ sub }}</p></div></section>
+{%- endmacro -%}
+
+{%- macro docItem(file, title, note) -%}
+{%- set e = file | ext -%}
+<li><a class="doc" href="{{ file }}" target="_blank" rel="noopener"><span class="ft {{ e }}">{{ e | upper }}</span><span class="t"><b>{{ title }}</b>{% if note %}<small>{{ note }}</small>{% endif %}</span><span class="dl">{{ icon("dl") }}</span></a></li>
+{%- endmacro -%}
+
+{%- macro docList(items) -%}
+<ul class="doc-list">{% for d in items %}{% if d.file %}{{ docItem(d.file, d.title, d.note) }}{% endif %}{% endfor %}</ul>
+{%- endmacro -%}
+
+{#- Next-meeting cards: one per upcoming meeting; site.js shows only the soonest. -#}
+{%- macro nextMeeting(meetings, buildDate, time) -%}
+{%- set list = meetings | byDate -%}
+{%- set first = meetings | firstUpcoming(buildDate) -%}
+{%- for m in list %}{% if m.type != "none" %}{% set d = m.date | isoDate %}
+<div class="next-meeting" data-meeting="{{ d }}"{% if d != first %} hidden{% endif %}>
+  <div class="date-badge"><div class="m">{{ d | monthAbbr }}</div><div class="d">{{ d | dayNum }}</div></div>
+  <div>
+    <div class="eyebrow" style="margin-bottom:6px">Next meeting</div>
+    <h3>{{ m.title }}</h3>
+    <div class="meta"><span>{{ icon("clock") }} <b>{{ d | longDate }} &middot; {{ time }} CT</b></span></div>
+    <p>{% if m.note %}{{ m.note }}. {% endif %}{% if m.type == "open" %}All homeowners are welcome.{% else %}Board work session.{% endif %}</p>
+    {% if m.dial_in %}<p class="small">{{ m.dial_in }}</p>{% endif %}
+    <div class="btn-row" style="margin-top:14px">
+      {% if m.join_url %}<a class="btn" href="{{ m.join_url }}" target="_blank" rel="noopener">{{ m.join_label or "Join meeting" }}</a>{% else %}<span class="small">Join link will be posted before the meeting.</span>{% endif %}
+      <a class="btn outline" href="/meetings.html">Full schedule</a>
+    </div>
+  </div>
+</div>
+{%- endif %}{% endfor %}
+<div class="next-meeting" data-meeting="none"{% if first != "none" %} hidden{% endif %}>
+  <div class="date-badge"><div class="m">Soon</div><div class="d">&mdash;</div></div>
+  <div><div class="eyebrow" style="margin-bottom:6px">Meetings</div><h3>The next schedule is coming soon</h3>
+  <p>Meeting dates and links will be posted here and on neighborhood signs.</p>
+  <div class="btn-row" style="margin-top:14px"><a class="btn outline" href="/meetings.html">Meetings &amp; minutes</a></div></div>
+</div>
+{%- endmacro -%}
+
+{%- macro minutesYear(y, isOpen) -%}
+{%- set nfiles = (y.entries | withFile) | length %}
+<details class="year-block anchor" id="y{{ y.year }}"{% if isOpen %} open{% endif %}><summary>{{ y.year }}<span class="count">{% if nfiles %}{{ nfiles }} document{% if nfiles != 1 %}s{% endif %}{% else %}Notes only{% endif %}</span>{{ icon("chev") }}</summary><div class="months">
+{%- for e in y.entries %}
+  {%- if e.file %}<div class="month"><a href="{{ e.file }}" target="_blank" rel="noopener">{{ e.label }} <span class="muted small">{{ e.file | ext | upper }}</span></a>{% if e.note %}<small>{{ e.note }}</small>{% endif %}</div>
+  {%- else %}<div class="month none"><b>{{ e.label }}</b>{% if e.note %}<small>{{ e.note }}</small>{% endif %}</div>{% endif %}
+{%- endfor %}
+</div></details>
+{%- endmacro -%}
+
+{%- macro updateList(items) -%}
+<ul class="update-list">
+{%- for u in items %}
+  <li>{% if u.status == "done" %}<span class="dot done" title="Completed">{{ icon("check") }}</span>{% else %}<span class="dot" title="In progress">{{ icon("clock") }}</span>{% endif %}<div><b>{{ u.title }}</b> {% if u.status == "done" %}<span class="tag done">Done</span>{% else %}<span class="tag">In progress</span>{% endif %}<div class="muted body">{{ u.body | md | safe }}</div></div></li>
+{%- endfor %}
+</ul>
+{%- endmacro -%}

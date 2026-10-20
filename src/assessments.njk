@@ -1,0 +1,54 @@
+---
+layout: base.njk
+title: Assessments & Budget – The Wheatlands HOA
+description: How to pay your Wheatlands HOA assessment online, plus budgets and the property manager contact.
+permalink: /assessments.html
+---
+{%- from "macros.njk" import pageHead, docList -%}
+{%- set pm = site.property_manager -%}
+{{ pageHead("Assessments & Budget", "Assessments are billed annually and due January 1. Here’s how to pay, and where your dues go.") }}
+<section class="section anchor" id="pay">
+  <div class="container">
+    <div class="grid cols-2" style="gap:40px;align-items:start">
+      <div>
+        <h2>Pay your assessment online</h2>
+        <ol class="steps">
+          <li>Go to the <a href="{{ site.portal_url }}" target="_blank" rel="noopener">{{ pm.company }} Resident Portal</a> (ciranet.com/residentportal), or download the <b>CiraMobile</b> app from the Apple App Store or Google Play.</li>
+          <li>Find your <b>Resident Number</b>. It starts with an “R” and is in the upper right-hand corner of your bill.</li>
+          <li>Create your account using your address and R number.</li>
+          <li>Pay by <b>eCheck (free)</b> or credit card.</li>
+        </ol>
+        <div class="callout"><p>Credit card payments carry a <b>{{ site.card_fee }} fee</b> charged by the payment vendor. It does not go to the HOA. Paying by eCheck is free.</p></div>
+        <div class="btn-row"><a class="btn dark" href="{{ site.portal_url }}" target="_blank" rel="noopener">Open the Resident Portal</a></div>
+        <p class="small muted" style="margin-top:18px">Having trouble? Email <a href="mailto:{{ pm.service_email }}">{{ pm.service_email }}</a> or call <a href="{{ pm.phone | telHref }}">{{ pm.phone }}</a>.</p>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <h3>Questions about your balance?</h3>
+          <p>If you haven’t paid your annual assessment, or need to set up a payment plan, contact our property manager.</p>
+          <div class="person"><span class="avatar">{{ pm.name | initials }}</span><div><b>{{ pm.name }}</b><small>{{ pm.title }}, {{ pm.company }}</small></div></div>
+          <p style="margin-top:14px" class="mb-0"><a href="mailto:{{ pm.email }}">{{ pm.email }}</a><br><a href="{{ pm.phone | telHref }}">{{ pm.phone }}</a><br><span class="small muted">Resident Service Center: {{ pm.hours }}</span></p>
+        </div>
+        <div class="card">
+          <h3>Why dues matter</h3>
+          <p class="mb-0">Our association runs on a tight budget each year, so every homeowner needs to pay their portion. Each Board member has a fiduciary responsibility to collect dues and enforce the Declaration. Late payments may incur late fees and be turned over to the Association’s attorneys for collection. Assessments are owed by all single-family homes and townhomes in the Wheatlands.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section alt anchor" id="budget">
+  <div class="container">
+    <div class="grid cols-2" style="gap:40px;align-items:start">
+      <div>
+        <h2>Budgets</h2>
+        {{ docList(documents.budgets) }}
+      </div>
+      <div>
+        <h2>Townhome sub-associations</h2>
+        <p>If you live in the townhomes in <b>Ogden Pointe, Summit Fields or Harvest Run</b>, you also pay monthly assessments to your sub-association (Associa or FirstService). That is in addition to the annual Wheatlands assessment.</p>
+        {{ docList(documents.sub_associations) }}
+      </div>
+    </div>
+  </div>
+</section>

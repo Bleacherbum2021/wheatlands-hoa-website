@@ -1,0 +1,78 @@
+---
+layout: base.njk
+title: The Wheatlands HOA – Aurora, Illinois
+description: Official site of the Wheatlands Homeowners Association in Aurora, IL. Meetings, assessments, documents and contacts.
+identityWidget: true
+---
+{%- from "macros.njk" import icon, nextMeeting, updateList -%}
+{%- set n = site.assessment_notice -%}
+<section class="hero">
+  <img class="hero-bg" src="/assets/img/hero-fall.jpg" alt="The Wheatlands entrance monument decorated with pumpkins and fall flowers">
+  <div class="container">
+    <div class="eyebrow">Aurora, Illinois &middot; {{ site.stats.homes }} homes</div>
+    <h1>Welcome home to The Wheatlands</h1>
+    <p class="lede">Meeting schedules, assessment payments, governing documents and neighborhood news, all in one place.</p>
+    <div class="btn-row">
+      <a class="btn" href="/assessments.html">Pay your assessment</a>
+      <a class="btn ghost" href="/meetings.html">Meeting schedule</a>
+    </div>
+  </div>
+</section>
+
+<section class="quick">
+  <div class="container">
+    <div class="grid cols-4">
+      <a class="card tile" href="/assessments.html"><span class="ico">{{ icon("card") }}</span><strong>Pay assessment</strong><span>Online through the {{ site.property_manager.company }} Resident Portal or CiraMobile app.</span><span class="go">How to pay &rarr;</span></a>
+      <a class="card tile" href="/meetings.html"><span class="ico">{{ icon("cal") }}</span><strong>Meetings &amp; minutes</strong><span>{{ meetings.year }} schedule, join links and past minutes.</span><span class="go">See schedule &rarr;</span></a>
+      <a class="card tile" href="/documents.html"><span class="ico">{{ icon("doc") }}</span><strong>Forms &amp; documents</strong><span>Architectural change and fence forms, Declaration, By-Laws.</span><span class="go">Browse documents &rarr;</span></a>
+      <a class="card tile" href="/contacts.html"><span class="ico">{{ icon("phone") }}</span><strong>Contact us</strong><span>Property manager, Board and City of Aurora contacts.</span><span class="go">Get in touch &rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid cols-2" style="gap:40px;align-items:start">
+      <div>
+        <div class="eyebrow" style="color:var(--wheat-700)">Coming up</div>
+        <h2>Join the next meeting</h2>
+        <p class="muted">Meetings start at {{ meetings.time }}. {{ meetings.note }}</p>
+        {{ nextMeeting(meetings.meetings, buildDate, meetings.time) }}
+      </div>
+      <div>
+        <div class="eyebrow" style="color:var(--wheat-700)">{{ n.eyebrow }}</div>
+        <h2>{{ n.heading }}</h2>
+        <div class="prose-inline">{{ n.body | md | safe }}</div>
+        {% if n.callout %}<div class="callout" style="margin-top:1em">{{ n.callout | md | safe }}</div>{% endif %}
+        <p class="small muted">Townhome owners in Ogden Pointe, Summit Fields or Harvest Run also pay monthly assessments to their sub-association (Associa or FirstService). That is separate from the Wheatlands assessment.</p>
+        <a class="btn outline" href="/assessments.html">Budget &amp; payment details</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container split">
+    <div>
+      <div class="eyebrow" style="color:var(--wheat-700)">Our association</div>
+      <h2>A master association in southeast Aurora</h2>
+      <p>Wheatlands Homeowners Association is a master association located in Will and Kendall counties on the east side of Aurora, Illinois. PreK–12 students attend Community Unit School District 308, the seventh-largest school district in Illinois.</p>
+      <div class="stats">
+        <div class="stat"><b>{{ site.stats.homes }}</b><span>Homes</span></div>
+        <div class="stat"><b>{{ site.stats.single_family }}</b><span>Single-family</span></div>
+        <div class="stat"><b>{{ site.stats.townhomes }}</b><span>Townhomes</span></div>
+      </div>
+      <p>The Board works on your behalf to keep the community beautiful: maintaining ponds, fountains, lights, monuments and common grounds; caring for trees and common-area gardens; and supporting events like the community garage sale and Movie Under the Stars.</p>
+      <a class="btn outline" href="/about.html">Meet the Board</a>
+    </div>
+    <img src="/assets/img/monument-summer.jpg" alt="Wheatlands stone monument surrounded by evergreens and lavender in summer">
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow" style="color:var(--wheat-700)">From the Board</div><h2>Latest updates</h2></div>
+    {{ updateList(news.updates | batch(4) | first) }}
+    <p style="margin-top:20px"><a class="btn outline" href="/news.html">All news &amp; events</a></p>
+  </div>
+</section>

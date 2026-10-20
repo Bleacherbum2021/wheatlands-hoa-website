@@ -1,0 +1,10 @@
+---
+layout: base.njk
+title: Thank you – The Wheatlands HOA
+description: Message sent.
+permalink: /thanks.html
+navKey: /contacts.html
+---
+{%- from "macros.njk" import pageHead -%}
+{{ pageHead("Thank you", "Your message was sent to the Wheatlands HOA Board.") }}
+<section class="section"><div class="container"><p>A Board member will follow up by email. For account balances or payments, contact {{ site.property_manager.company }} at <a href="{{ site.property_manager.phone | telHref }}">{{ site.property_manager.phone }}</a>.</p><a class="btn dark" href="/">Back to home</a></div></section>

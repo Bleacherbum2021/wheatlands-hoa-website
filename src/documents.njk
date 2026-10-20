@@ -1,0 +1,67 @@
+---
+layout: base.njk
+title: Documents & Forms – The Wheatlands HOA
+description: Wheatlands HOA governing documents, architectural change forms, fence requirements and resolutions.
+permalink: /documents.html
+---
+{%- from "macros.njk" import pageHead, docList, docItem -%}
+{{ pageHead("Documents & Forms", "Governing documents, request forms and Board resolutions for the Wheatlands HOA.") }}
+<section class="section anchor" id="forms">
+  <div class="container">
+    <div class="section-head"><h2>Forms</h2><p>Please submit forms <b>before</b> starting any work. Questions? Contact the <a href="/contacts.html">property manager or a Board member</a>.</p></div>
+    <div class="grid cols-2" style="gap:24px;align-items:start">
+      {%- for f in documents.forms %}
+      <div class="card">
+        <h3>{{ f.title }}</h3>
+        <div class="prose-inline" style="margin-bottom:1em">{{ f.description | md | safe }}</div>
+        {% if f.file %}<ul class="doc-list">{{ docItem(f.file, f.file_label or f.title, f.file_note) }}</ul>{% endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+<section class="section alt anchor" id="governing">
+  <div class="container">
+    <div class="grid cols-2" style="gap:40px;align-items:start">
+      <div>
+        <h2>Governing documents</h2>
+        {{ docList(documents.governing) }}
+      </div>
+      <div id="resolutions" class="anchor">
+        <h2>Resolutions</h2>
+        {{ docList(documents.resolutions) }}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Key rules</h2><p>Plain-language summaries. The full text from the Declaration is included below each one.</p></div>
+    <div class="grid cols-2" style="gap:24px;align-items:start">
+      <div class="card anchor" id="sec-808">
+        <h3>Fences: Section 8.08(c)</h3>
+        <p>On lots designated “Fence Restricted Lots,” a fence may be built only between the rear lot line and the back of the home, and must meet these specifications:</p>
+        <ul class="spec">
+          <li><b>Material</b><span>Western Red Cedar, board-on-board (shadow box)</span></li>
+          <li><b>Height</b><span>4, 5 or 6 feet (per Board rules) and compliant with municipal code</span></li>
+          <li><b>Boards</b><span>1×6, spaced edge-to-edge and back-to-back to meet the city’s percent-open requirement</span></li>
+          <li><b>Posts</b><span>4×4 with cedar cap, set 42″ deep about 8 ft on center, concrete footings</span></li>
+          <li><b>Rails</b><span>Two 2×4 back rails: one at the top of the boards, one 12″ up from the bottom</span></li>
+          <li><b>Top cap</b><span>1×4, centered on the boards</span></li>
+        </ul>
+        <p class="small muted mb-0">Effective January 1, 2026, damaged fencing must be repaired promptly; unrepaired damage may be fined.</p>
+      </div>
+      <div class="card anchor" id="sec-907">
+        <h3>Design &amp; maintenance: Section 9.07</h3>
+        <p>No exterior work may begin without prior written approval. That includes grading or excavating, landscaping changes, buildings, driveways, walkways, fences, signs, and changes of exterior color. Work started without approval can be stopped, and the Association may require the property to be restored.</p>
+        <p class="mb-0">Lots must be kept neat and well-maintained. If a property isn’t maintained, the Association may perform needed work and charge the owner; unpaid charges after 30 days can become a lien on the property.</p>
+        <details class="legal"><summary>Read the full text of Section 9.07</summary>
+          <p><b>(a)</b> The Declarant shall have the right and power from time to time to adopt reasonable rules, regulations, guidelines, and standards governing the design and exterior finish (including color) of all improvements or landscaping from time to time constructed, installed or proposed to be constructed, installed or modified on the Premises. Without limiting the foregoing, no earthmoving, filling, dredging, grading, excavating, installation of landscaping, alteration of landscaping, construction of a building, driveway, walkway, fence, signs or other advertising or promotional devices or any other temporary or permanent improvement to any portion of the Premises or any modification, alteration, renovation, addition or removal of any of the foregoing, including change of exterior color ("Regulated Work") shall be commenced or maintained with respect to any portion of the Premises without the prior written consent of the Declarant to the plans therefor, which consent may be granted or withheld in Declarant's sole and absolute discretion. The Declarant reserves the right and power to promulgate and amend from time to time standards, policies, procedures and guidelines in order to implement the foregoing. If any Regulated Work which requires Declarant approval as provided above is commenced without obtaining the required written consent of the Declarant, then the Declarant may seek any remedy or take any action provided for herein or permitted at law or in equity in order to enforce the provisions hereof, including injunctive relief to stop work and/or restore the portion of the Premises to its condition prior to the commencement of the work.</p>
+          <p><b>(b)</b> The Declarant shall have the right and power from time to time to adopt rules, regulations, guidelines, and standards governing the maintenance and upkeep of portions of the Premises, including without limitation, improvements thereto, signs, advertising and landscaping thereon. Without limiting the foregoing, those portions of the Premises on which construction of improvements has not yet commenced shall at all times be maintained in a neat and clean condition and all weeds shall be periodically cut. If in the sole judgement of the Declarant a portion of the Premises is not being maintained in good condition and repair or the appearance of any such portion of the Premises is not of the character and quality of that of other portions of the Premises or is not in compliance with rules, regulations, guidelines, and standards adopted from time to time by the Declarant, then without limiting any rights or remedies available to the Declarant hereunder, at law or in equity, Declarant shall have the right to enter upon any such portion of the Premises and perform any maintenance or repair work which it deems necessary or appropriate. The cost of any such work shall be charged to the Owner or party responsible for maintenance of such portion of the Premises if different from the Owner, and shall be payable to the Declarant upon demand. In the event that the party charged for such work fails to make prompt payment of any such amount within thirty (30) days after demand, such amount shall become and continue to be a lien upon the portion of the Premises owned by such party until such time as payment is made in full; provided, that any such lien shall be subordinate to the lien of any First Mortgage on a Dwelling Unit or Unbuilt Dwelling Unit Recorded prior to the date on which any such amount becomes a lien against a Dwelling Unit or Unbuilt Dwelling Unit as provided above.</p>
+          <p><b>(c)</b> Any one or more of the rights and powers of the Declarant under this Section may be delegated to one or more individuals or entities designated from time to time by the Declarant.</p>
+          <p><b>(d)</b> Subject as hereinafter provided, from time to time, the Declarant may enter into an agreement ("Transfer Agreement") with the Association whereby the Declarant assigns and transfers to the Association some or all of its rights and powers under Subsections (a) and (b). Any Transfer Agreement shall be executed by both the Declarant and the Association and shall be recorded; provided, that the execution of the Transfer Agreement by the Association shall be approved in advance by action of the Voting Members at an annual meeting or special meeting of the Voting Members. A Transfer Agreement may include such terms as are agreed upon between the Declarant and the Association. From and after the recording of a Transfer Agreement, the rights and powers of the Declarant under Subsections (a) and (b) which are transferred to the Association pursuant to the Transfer Agreement, shall be administered as provided in the Transfer Agreement. Any rights and powers of the Declarant under Subsections (a) and (b) which are not transferred to the Association pursuant to a Transfer Agreement shall expire and terminate at such time as (i) the Development has been fully developed and improved per Declarant's Development Plan and (ii) the Declarant no longer holds or controls title to any portion of the Development Area.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>

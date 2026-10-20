@@ -1,0 +1,33 @@
+{
+  "board_contact": {
+    "name": "Michele Buchanan",
+    "role": "Board President"
+  },
+  "city": [
+    {
+      "name": "City Help Line",
+      "role": "City of Aurora",
+      "phone": "(630) 256-4636",
+      "phone_display": "(630) 256-INFO / 256-4636",
+      "email": "",
+      "url": "https://www.aurora-il.org/"
+    },
+    {
+      "name": "Ed Bugg",
+      "role": "9th Ward Alderman",
+      "phone": "(630) 256-3020",
+      "phone_display": "",
+      "email": "AldermanBugg@gmail.com",
+      "url": ""
+    },
+    {
+      "name": "Marcin Lemanski",
+      "role": "Community Policing Officer",
+      "phone": "(630) 256-5142",
+      "phone_display": "",
+      "email": "lemanskm@apd.aurora.il.us",
+      "url": ""
+    }
+  ],
+  "location": "The Wheatlands is in southeast Aurora, IL, bounded by Eola Road and Keating Drive to the north and Sunrise Circle to the south."
+}

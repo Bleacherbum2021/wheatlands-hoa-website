@@ -1,0 +1,70 @@
+{
+  "posts": [
+    {
+      "date": "2026-08-19",
+      "title": "District 308 referendum: community meet & greet",
+      "body": "Oswego Community Unit School District 308 is hosting an informational meeting about the proposed **Update 308** referendum, covering the district’s facility and infrastructure needs, the proposal itself and its potential tax impact. Residents can meet district leadership and ask questions.",
+      "file": "/uploads/7/2/1/6/7216816/coffee_talk_flyer__3___2_.pdf",
+      "file_label": "Meeting flyer & details"
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-06-12",
+      "title": "Community Garage Sale",
+      "details": "June 12–14, 2026 · Fri & Sat 8 AM–3 PM, Sun 9 AM–1 PM · No registration required"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Movie Under the Stars",
+      "details": "Saturday, August 8, 2026 · Featuring GOAT"
+    }
+  ],
+  "updates": [
+    {
+      "title": "Communication",
+      "status": "in-progress",
+      "body": "The Board is putting new initiatives in place so residents get timely, relevant information."
+    },
+    {
+      "title": "Governing documents review",
+      "status": "in-progress",
+      "body": "The Declaration and Rules & Regulations are being reviewed to make sure they reflect current Illinois law. We’ll keep the community informed as this progresses."
+    },
+    {
+      "title": "Short-term rentals",
+      "status": "done",
+      "body": "The Board took action on the short-term rental (Airbnb) in the neighborhood. A [Short-Term Rental Resolution](/uploads/7/2/1/6/7216816/09.17.2026.short_term_rental.v.signed.pdf) has since been signed."
+    },
+    {
+      "title": "Monument repair",
+      "status": "in-progress",
+      "body": "The damaged community monument is scheduled for repair; work is expected to begin soon."
+    },
+    {
+      "title": "Fence repairs",
+      "status": "in-progress",
+      "body": "Effective January 1, 2026, homeowners are expected to promptly repair damaged fencing. Unrepaired damage may be subject to fines under Association policy."
+    },
+    {
+      "title": "Barrington / Eola fence",
+      "status": "done",
+      "body": "The unapproved fence at the southwest corner of Barrington and Eola was removed and replaced with a fence that meets the Declaration."
+    },
+    {
+      "title": "Monument lighting",
+      "status": "done",
+      "body": "Monuments at the Reserve and at the northwest corner of Barrington and Haefenrichter now have LED lights for better visibility and longevity."
+    },
+    {
+      "title": "Electronic communication",
+      "status": "in-progress",
+      "body": "Coming soon: we’ll ask all residents for permission to communicate electronically."
+    },
+    {
+      "title": "Open meetings",
+      "status": "done",
+      "body": "All meetings are being held as open meetings beginning August 2026."
+    }
+  ]
+}

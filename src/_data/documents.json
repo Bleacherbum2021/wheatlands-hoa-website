@@ -1,0 +1,113 @@
+{
+  "forms": [
+    {
+      "title": "Architectural Change Request",
+      "description": "Required for any change to the exterior of your home or property, including siding, roof, gutters, windows, doors, patios, decks, sidewalks, driveways, solar panels and in-ground pools. Above-ground pools are not allowed. Covered by [Section 9.07](#sec-907) of the Declaration.",
+      "file": "http://www.wheatlandshoa.org/uploads/7/2/1/6/7216816/wheatlands_architectural_change_form_2023.doc",
+      "file_label": "Architectural Change Form",
+      "file_note": "Word document"
+    },
+    {
+      "title": "Fence Architectural Change",
+      "description": "Required for any new fence, and for any change or repair to an existing fence, under [Section 8.08(c)](#sec-808). Rules cover placement, materials and height (4, 5 or 6 feet). Some lots are fence-restricted.",
+      "file": "/uploads/7/2/1/6/7216816/fence_-_architectural_change_form_11_15_2025.pdf",
+      "file_label": "Fence Architectural Change Form",
+      "file_note": "Updated November 15, 2025"
+    },
+    {
+      "title": "Board Nomination Application",
+      "description": "Interested in serving on the Board? Fill out the nomination application.",
+      "file": "/uploads/7/2/1/6/7216816/2025_nomination_application_form_update_writable.pdf",
+      "file_label": "Board Nomination Application",
+      "file_note": "Fillable PDF"
+    }
+  ],
+  "governing": [
+    {
+      "title": "Declaration",
+      "note": "Wheatlands HOA",
+      "file": "/uploads/7/2/1/6/7216816/wheatlands_hoa_-_declaration.pdf"
+    },
+    {
+      "title": "Declaration of Covenants, Conditions & Restrictions",
+      "note": "DCCRs",
+      "file": "/uploads/7/2/1/6/7216816/dccrs.pdf"
+    },
+    {
+      "title": "DCCRs Supplement No. 37",
+      "note": "",
+      "file": "/uploads/7/2/1/6/7216816/dccrs_-_supplements_no._37.pdf"
+    },
+    {
+      "title": "By-Laws",
+      "note": "",
+      "file": "/uploads/7/2/1/6/7216816/wheatlands_hoa_-_by-laws.pdf"
+    },
+    {
+      "title": "Solar Declaration Amendment",
+      "note": "2023",
+      "file": "/uploads/7/2/1/6/7216816/solar_declaration_amendment_w_changes_in_document_final_2023.pdf"
+    },
+    {
+      "title": "Community Site Map",
+      "note": "",
+      "file": "/uploads/7/2/1/6/7216816/site_map_-_clean.pdf"
+    }
+  ],
+  "resolutions": [
+    {
+      "title": "Short-Term Rental Resolution",
+      "note": "Signed September 17, 2026",
+      "file": "/uploads/7/2/1/6/7216816/09.17.2026.short_term_rental.v.signed.pdf"
+    },
+    {
+      "title": "Charge to Delinquent Accounts",
+      "note": "Passed January 2026",
+      "file": "/uploads/7/2/1/6/7216816/12.01.2025_225_pass_to_homeowners_73524_version_01.pdf"
+    },
+    {
+      "title": "Dispute Resolution",
+      "note": "Passed December 2018",
+      "file": "/uploads/7/2/1/6/7216816/dispute_resolution_-_december_2018_signed.pdf"
+    },
+    {
+      "title": "Electronic Voting Resolution",
+      "note": "Passed February 2015",
+      "file": "/uploads/7/2/1/6/7216816/electronic_voting_resolution_2015.pdf"
+    }
+  ],
+  "budgets": [
+    {
+      "title": "2026 Annual Budget",
+      "note": "Proposed December 3, 2025",
+      "file": "/uploads/7/2/1/6/7216816/12.03.2025_wheatlands_2026_proposed_budget_72733_version_01.pdf"
+    },
+    {
+      "title": "2026 Board Resolution to Adopt Annual Budget",
+      "note": "December 3, 2025",
+      "file": "/uploads/7/2/1/6/7216816/12.03.2025_wheatlan_2026_board_resolution_to_adopt_annual_budget.pdf"
+    },
+    {
+      "title": "2025 Assessments & Annual Budget",
+      "note": "Approved December 4, 2024",
+      "file": "/uploads/7/2/1/6/7216816/wheatlan_2025_assessments_and_annual_budget__approved_12.04.2024_.pdf"
+    },
+    {
+      "title": "2024 Budget",
+      "note": "Spreadsheet",
+      "file": "/uploads/7/2/1/6/7216816/2024_budget_from_rm_10.24.2023_v3_for_print.xlsx"
+    },
+    {
+      "title": "2024 Assessments",
+      "note": "Spreadsheet",
+      "file": "/uploads/7/2/1/6/7216816/2024_assessments_for_print_10252023.xlsx"
+    }
+  ],
+  "sub_associations": [
+    {
+      "title": "Sub-association contacts",
+      "note": "Updated September 28, 2026",
+      "file": "/uploads/7/2/1/6/7216816/sub_associations_2026.09.28_update.docx"
+    }
+  ]
+}

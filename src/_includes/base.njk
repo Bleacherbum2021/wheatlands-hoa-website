@@ -1,0 +1,99 @@
+{%- set nav = [
+  ["/", "Home"],
+  ["/about.html", "About"],
+  ["/meetings.html", "Meetings"],
+  ["/news.html", "News"],
+  ["/documents.html", "Documents"],
+  ["/contacts.html", "Contact"]
+] -%}
+{%- set current = navKey or page.url -%}
+{%- set mark -%}<svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#2f4a3a"/><g fill="none" stroke="#e2cd9a" stroke-width="1.8" stroke-linecap="round"><path d="M20 33V11"/><path d="M20 15c-3-1-4.5-3.5-4.5-6 3 .6 4.5 2.8 4.5 6zM20 15c3-1 4.5-3.5 4.5-6-3 .6-4.5 2.8-4.5 6z" fill="#e2cd9a"/><path d="M20 21c-3.4-1-5-3.6-5-6.4 3.4.7 5 3.2 5 6.4zM20 21c3.4-1 5-3.6 5-6.4-3.4.7-5 3.2-5 6.4z" fill="#e2cd9a"/><path d="M20 27c-3.6-1-5.4-3.8-5.4-6.8 3.6.8 5.4 3.4 5.4 6.8zM20 27c3.6-1 5.4-3.8 5.4-6.8-3.6.8-5.4 3.4-5.4 6.8z" fill="#e2cd9a"/></g></svg>{%- endset -%}
+{%- set pm = site.property_manager -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+{%- if identityWidget %}
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+{%- endif %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">{{ mark | safe }}<span class="brand-text"><span class="brand-name">The Wheatlands</span><span class="brand-sub">Homeowners Association</span></span></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg width="22" height="16" viewBox="0 0 22 16" fill="currentColor"><rect width="22" height="2.2" rx="1.1"/><rect y="6.9" width="22" height="2.2" rx="1.1"/><rect y="13.8" width="22" height="2.2" rx="1.1"/></svg></button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul>
+        {%- for item in nav %}
+        <li><a href="{{ item[0] }}"{% if item[0] == current %} aria-current="page"{% endif %}>{{ item[1] }}</a></li>
+        {%- endfor %}
+        <li><a class="nav-cta" href="/assessments.html"{% if current == "/assessments.html" %} aria-current="page"{% endif %}>Pay Assessment</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+{{ content | safe }}
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/">{{ mark | safe }}<span class="brand-text"><span class="brand-name">The Wheatlands</span><span class="brand-sub">Homeowners Association</span></span></a>
+        <p>A master association of {{ site.stats.homes }} homes in southeast Aurora, Illinois.</p>
+        <p><a href="{{ site.facebook_url }}" rel="noopener" target="_blank">Follow us on Facebook &rarr;</a></p>
+      </div>
+      <div>
+        <h4>Property Manager</h4>
+        <ul>
+          <li>{{ pm.company }} &middot; {{ pm.name }}</li>
+          <li><a href="{{ pm.phone | telHref }}">{{ pm.phone }}</a></li>
+          <li><a href="mailto:{{ pm.email }}">{{ pm.email }}</a></li>
+          <li><a href="{{ site.portal_url }}" rel="noopener" target="_blank">Resident Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>HOA Board</h4>
+        <ul>
+          <li><a href="mailto:{{ site.board_email }}">{{ site.board_email }}</a></li>
+          <li><a href="/meetings.html">Meeting schedule</a></li>
+          <li><a href="/contacts.html#question">Send a question</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          {%- for item in nav %}{% if not loop.first %}<li><a href="{{ item[0] }}">{{ item[1] }}</a></li>{% endif %}{% endfor %}
+          <li><a href="/assessments.html">Assessments &amp; Budget</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>{{ buildDate.slice(0, 4) }}</span> Wheatlands Homeowners Association &middot; Aurora, IL</span>
+      <span><a href="/admin/">Board login</a></span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js"></script>
+{%- if identityWidget %}
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () { document.location.href = "/admin/"; });
+      }
+    });
+  }
+</script>
+{%- endif %}
+</body>
+</html>

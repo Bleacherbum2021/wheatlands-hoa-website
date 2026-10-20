@@ -1,0 +1,27 @@
+{
+  "board_email": "Wheatlandshoa@gmail.com",
+  "facebook_url": "https://www.facebook.com/Wheatlands-HOA-292787257416251/",
+  "portal_url": "https://www.ciranet.com/ResidentPortal",
+  "portal_documents_url": "https://www.ciranet.com/ResidentPortal/accounts/documents",
+  "property_manager": {
+    "name": "Freda McKay",
+    "title": "Portfolio Community Association Manager",
+    "company": "RealManage",
+    "phone": "630-474-5700",
+    "email": "wheatlan@ciramail.com",
+    "service_email": "realservice@ciramail.com",
+    "hours": "Mon–Fri, 7:30 AM – 7:00 PM CT"
+  },
+  "card_fee": "$14.95",
+  "assessment_notice": {
+    "eyebrow": "2026 Assessments",
+    "heading": "No increase for 2026",
+    "body": "In 2024 we raised assessments for the first time in over 20 years, and again for 2025 to keep up with costs. The Board has worked hard to refine contracts and spend wisely, and **there is no assessment increase for 2026**.\n\nWith costs rising across the board, another increase is likely for 2027. Budget preparation starts each August.",
+    "callout": "**Assessments are paid annually, due January 1.** Bills are mailed to homeowners the first week of December."
+  },
+  "stats": {
+    "homes": "991",
+    "single_family": "557",
+    "townhomes": "434"
+  }
+}

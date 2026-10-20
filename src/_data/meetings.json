@@ -1,0 +1,88 @@
+{
+  "year": 2026,
+  "time": "7:00 PM",
+  "note": "Meetings are held virtually. Links are posted here and on neighborhood signs.",
+  "meetings": [
+    {
+      "date": "2026-04-22",
+      "title": "Spring Meeting",
+      "type": "open",
+      "note": "",
+      "join_url": "",
+      "join_label": "",
+      "dial_in": ""
+    },
+    {
+      "date": "2026-05-20",
+      "title": "Work Session",
+      "type": "work",
+      "note": "",
+      "join_url": "",
+      "join_label": "",
+      "dial_in": ""
+    },
+    {
+      "date": "2026-06-17",
+      "title": "Work Session",
+      "type": "work",
+      "note": "In person",
+      "join_url": "",
+      "join_label": "",
+      "dial_in": ""
+    },
+    {
+      "date": "2026-07-22",
+      "title": "Work Session",
+      "type": "work",
+      "note": "",
+      "join_url": "",
+      "join_label": "",
+      "dial_in": ""
+    },
+    {
+      "date": "2026-08-19",
+      "title": "Open Meeting",
+      "type": "open",
+      "note": "Determine 2027 budget",
+      "join_url": "",
+      "join_label": "",
+      "dial_in": ""
+    },
+    {
+      "date": "2026-09-16",
+      "title": "Fall Meeting",
+      "type": "open",
+      "note": "Proposed 2027 budget presented to homeowners",
+      "join_url": "",
+      "join_label": "",
+      "dial_in": ""
+    },
+    {
+      "date": "2026-10-21",
+      "title": "Open Meeting",
+      "type": "open",
+      "note": "Held on Zoom",
+      "join_url": "https://us06web.zoom.us/j/82774564313?pwd=WFw0fYz3iMSYnlQBNYnZy0NBKDgU1b.1",
+      "join_label": "Join on Zoom",
+      "dial_in": "Meeting ID 827 7456 4313 · Passcode 527500 · Dial in: +1 312 626 6799"
+    },
+    {
+      "date": "2026-11-18",
+      "title": "No meeting in November",
+      "type": "none",
+      "note": "",
+      "join_url": "",
+      "join_label": "",
+      "dial_in": ""
+    },
+    {
+      "date": "2026-12-02",
+      "title": "Budget Approval Meeting",
+      "type": "open",
+      "note": "Homeowners approve the final 2027 budget. Held on GoTo Meeting",
+      "join_url": "https://meet.goto.com/536741781",
+      "join_label": "Join on GoTo",
+      "dial_in": "Access code 536-741-781 · Dial in: +1 408 650 3123"
+    }
+  ]
+}

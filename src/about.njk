@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: About – The Wheatlands HOA
+description: About the Wheatlands Homeowners Association and its Board of Directors.
+permalink: /about.html
+---
+{%- from "macros.njk" import pageHead -%}
+{{ pageHead("About the Wheatlands", site.stats.homes + " homes, one community, in southeast Aurora, Illinois.") }}
+<section class="section">
+  <div class="container split" style="align-items:start">
+    <div class="prose">
+      <h2>Who we are</h2>
+      <p>Wheatlands Homeowners Association (HOA) is a master association with <b>{{ site.stats.homes }} homes</b>, including {{ site.stats.single_family }} single-family homes and {{ site.stats.townhomes }} townhouses, in Aurora, Illinois. We are located in Will and Kendall counties on the east side of Aurora. PreK–12 students living in our HOA attend <b>Community Unit School District 308</b>.</p>
+      <p>The community is split by Eola Road and Keating Drive to the north and Sunrise Circle to the south. Townhomes in Ogden Pointe, Summit Fields and Harvest Run sit within the Wheatlands and also belong to their own sub-associations.</p>
+      <h3>What the Board does</h3>
+      <p>The HOA Board works on your behalf to keep our community beautiful and carries out the duties set out in the HOA Declaration, including:</p>
+      <ul>
+        <li>Maintaining ponds, fountains, lights, monuments and grounds (mowing, mulching)</li>
+        <li>Trimming, removing and replacing trees, and updating common-area gardens</li>
+        <li>Paying for common-area electricity and seasonal decorations</li>
+        <li>Supporting community events such as the garage sale and Movie Under the Stars</li>
+      </ul>
+      <p><a href="/uploads/7/2/1/6/7216816/site_map_-_clean.pdf" target="_blank" rel="noopener">View the community site map (PDF)</a></p>
+    </div>
+    <img src="/assets/img/monument-summer.jpg" alt="Wheatlands entrance monument in summer">
+  </div>
+</section>
+<section class="section alt">
+  <div class="container">
+    <div class="section-head"><h2>Board of Directors</h2><p>Board members are volunteer homeowners elected by the community. Reach the Board at <a href="mailto:{{ site.board_email }}">{{ site.board_email }}</a>.</p></div>
+    <div class="grid cols-3">
+      {%- for b in board.members %}
+      <div class="card person{% if b.role == 'President' %} role-lead{% endif %}"><span class="avatar">{{ b.name | initials }}</span><div><b>{{ b.name }}</b><small>{{ b.role }}</small></div></div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,276 @@
+# Wheatlands HOA site editor (Decap CMS)
+# Editors sign in with their Netlify Identity invite. Every change is saved as a
+# draft, gets a preview link, and goes live only after someone clicks Publish.
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+publish_mode: editorial_workflow
+show_preview_links: true
+site_url: https://wheatlands-hoa.netlify.app
+display_url: https://wheatlands-hoa.netlify.app
+logo_url: /assets/img/favicon.svg
+
+# New uploads (PDFs, Word files, images) go here
+media_folder: src/uploads/docs
+public_folder: /uploads/docs
+
+collections:
+  # ------------------------------------------------------------------ MEETINGS
+  - name: meetings
+    label: "Meetings"
+    description: "The meeting schedule, join links, and minutes."
+    editor: { preview: false }
+    files:
+      - name: schedule
+        label: "Meeting schedule"
+        file: src/_data/meetings.json
+        fields:
+          - { name: year, label: "Schedule year", widget: number, value_type: int, hint: "Shown as the heading, e.g. “2027 schedule”." }
+          - { name: time, label: "Usual start time", widget: string, default: "7:00 PM" }
+          - { name: note, label: "Note under the schedule", widget: string, required: false }
+          - name: meetings
+            label: "Meetings"
+            label_singular: "Meeting"
+            widget: list
+            summary: "{{fields.date}} · {{fields.title}}"
+            hint: "Order doesn’t matter; the site sorts by date. The home page automatically shows the next upcoming meeting."
+            fields:
+              - { name: date, label: "Date", widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true }
+              - { name: title, label: "Title", widget: string, hint: "e.g. Open Meeting, Work Session, Budget Approval Meeting" }
+              - name: type
+                label: "Type"
+                widget: select
+                default: open
+                options:
+                  - { label: "Open meeting (homeowners welcome)", value: open }
+                  - { label: "Work session", value: work }
+                  - { label: "No meeting this month", value: none }
+              - { name: note, label: "Short note", widget: string, required: false, hint: "e.g. “Held on Zoom” or “Determine 2027 budget”." }
+              - { name: join_url, label: "Join link (Zoom / GoTo)", widget: string, required: false }
+              - { name: join_label, label: "Join button text", widget: string, required: false, hint: "e.g. “Join on Zoom”." }
+              - { name: dial_in, label: "Meeting ID / passcode / dial-in", widget: string, required: false }
+
+      - name: minutes
+        label: "Meeting minutes"
+        file: src/_data/minutes.json
+        fields:
+          - name: years
+            label: "Years"
+            label_singular: "Year"
+            widget: list
+            summary: "{{fields.year}}"
+            hint: "To post new minutes, open the current year and add an entry with the file."
+            fields:
+              - { name: year, label: "Year", widget: number, value_type: int }
+              - name: entries
+                label: "Minutes"
+                label_singular: "Minutes"
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: "Meeting (e.g. September 16)", widget: string }
+                  - { name: file, label: "Minutes file (PDF or Word)", widget: file, required: false, choose_url: false }
+                  - { name: note, label: "Note (optional)", widget: string, required: false, hint: "e.g. “Meeting cancelled” when there’s no file." }
+          - { name: portal_note, label: "2021–2025 Resident Portal note", widget: markdown, buttons: [bold, link], editor_components: [], modes: [rich_text] }
+          - { name: approval_note, label: "“About meeting minutes” box", widget: text }
+
+  # ---------------------------------------------------------------------- NEWS
+  - name: news
+    label: "News & Events"
+    description: "Neighborhood news posts, community events, and Board updates."
+    editor: { preview: false }
+    files:
+      - name: news
+        label: "News, events & Board updates"
+        file: src/_data/news.json
+        fields:
+          - name: posts
+            label: "News posts"
+            label_singular: "News post"
+            widget: list
+            summary: "{{fields.date}} · {{fields.title}}"
+            hint: "Newest posts appear first."
+            fields:
+              - { name: date, label: "Date posted", widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true }
+              - { name: title, label: "Headline", widget: string }
+              - { name: body, label: "Story", widget: markdown, buttons: [bold, italic, link, bulleted-list], editor_components: [], modes: [rich_text] }
+              - { name: file, label: "Attachment (optional)", widget: file, required: false, choose_url: false }
+              - { name: file_label, label: "Attachment name", widget: string, required: false, hint: "e.g. “Meeting flyer”." }
+          - name: events
+            label: "Community events"
+            label_singular: "Event"
+            widget: list
+            summary: "{{fields.date}} · {{fields.title}}"
+            hint: "Past events are labeled “Past” automatically."
+            fields:
+              - { name: date, label: "Date", widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true }
+              - { name: title, label: "Event", widget: string }
+              - { name: details, label: "Details (dates, times, notes)", widget: string }
+          - name: updates
+            label: "Board updates"
+            label_singular: "Board update"
+            widget: list
+            summary: "{{fields.title}} ({{fields.status}})"
+            hint: "The first four appear on the home page. Drag to reorder."
+            fields:
+              - { name: title, label: "Topic", widget: string }
+              - name: status
+                label: "Status"
+                widget: select
+                default: in-progress
+                options:
+                  - { label: "In progress", value: in-progress }
+                  - { label: "Done", value: done }
+              - { name: body, label: "Update", widget: markdown, buttons: [bold, link], editor_components: [], modes: [rich_text] }
+
+  # ----------------------------------------------------------------- DOCUMENTS
+  - name: documents
+    label: "Documents & Forms"
+    description: "Forms, governing documents, resolutions, and budgets."
+    editor: { preview: false }
+    files:
+      - name: documents
+        label: "Documents & forms"
+        file: src/_data/documents.json
+        fields:
+          - name: forms
+            label: "Forms"
+            label_singular: "Form"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: description, label: "Description", widget: markdown, buttons: [bold, link], editor_components: [], modes: [rich_text] }
+              - { name: file, label: "Form file", widget: file, required: false, choose_url: true }
+              - { name: file_label, label: "Download button name", widget: string, required: false }
+              - { name: file_note, label: "Small note (e.g. “Updated March 2027”)", widget: string, required: false }
+          - name: governing
+            label: "Governing documents"
+            label_singular: "Document"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: note, label: "Small note (e.g. date passed)", widget: string, required: false }
+              - { name: file, label: "File", widget: file, choose_url: false }
+          - name: resolutions
+            label: "Resolutions"
+            label_singular: "Resolution"
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Listed in the order shown here. Put the newest first."
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: note, label: "Small note (e.g. date passed)", widget: string, required: false }
+              - { name: file, label: "File", widget: file, choose_url: false }
+          - name: budgets
+            label: "Budgets (Assessments page)"
+            label_singular: "Budget document"
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Put the newest first."
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: note, label: "Small note (e.g. date passed)", widget: string, required: false }
+              - { name: file, label: "File", widget: file, choose_url: false }
+          - name: sub_associations
+            label: "Sub-association documents (Assessments page)"
+            label_singular: "Document"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: note, label: "Small note (e.g. date passed)", widget: string, required: false }
+              - { name: file, label: "File", widget: file, choose_url: false }
+
+  # ---------------------------------------------------------- PEOPLE & SETTINGS
+  - name: people
+    label: "Board & Contacts"
+    description: "Board of Directors and contact information."
+    editor: { preview: false }
+    files:
+      - name: board
+        label: "Board of Directors"
+        file: src/_data/board.json
+        fields:
+          - name: members
+            label: "Board members"
+            label_singular: "Board member"
+            widget: list
+            summary: "{{fields.name}} · {{fields.role}}"
+            hint: "Shown in this order on the About page."
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: role, label: "Role", widget: string, hint: "President, Secretary, Treasurer or Director" }
+      - name: contacts
+        label: "Contacts page"
+        file: src/_data/contacts.json
+        fields:
+          - name: board_contact
+            label: "Board contact"
+            widget: object
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: role, label: "Role", widget: string }
+          - name: city
+            label: "City of Aurora contacts"
+            label_singular: "Contact"
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: role, label: "Role", widget: string, required: false }
+              - { name: phone, label: "Phone", widget: string, required: false }
+              - { name: phone_display, label: "Phone as displayed (optional)", widget: string, required: false }
+              - { name: email, label: "Email", widget: string, required: false }
+              - { name: url, label: "Website", widget: string, required: false }
+          - { name: location, label: "“Where we are” text", widget: text }
+
+  - name: settings
+    label: "Site Settings"
+    description: "Home page assessment notice, property manager, and contact details used across the site."
+    editor: { preview: false }
+    files:
+      - name: site
+        label: "Site settings"
+        file: src/_data/site.json
+        fields:
+          - name: assessment_notice
+            label: "Home page assessment notice"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Small label", widget: string, hint: "e.g. “2027 Assessments”" }
+              - { name: heading, label: "Heading", widget: string }
+              - { name: body, label: "Text", widget: markdown, buttons: [bold, link], editor_components: [], modes: [rich_text] }
+              - { name: callout, label: "Highlighted box", widget: markdown, buttons: [bold, link], editor_components: [], modes: [rich_text], required: false }
+          - name: property_manager
+            label: "Property manager"
+            widget: object
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: company, label: "Company", widget: string }
+              - { name: phone, label: "Phone", widget: string }
+              - { name: email, label: "Email", widget: string }
+              - { name: service_email, label: "Customer service email", widget: string }
+              - { name: hours, label: "Service hours", widget: string }
+          - { name: board_email, label: "Board email", widget: string }
+          - { name: card_fee, label: "Credit card fee", widget: string }
+          - { name: portal_url, label: "Resident Portal link", widget: string }
+          - { name: portal_documents_url, label: "Resident Portal documents link", widget: string }
+          - { name: facebook_url, label: "Facebook page link", widget: string }
+          - name: stats
+            label: "Community numbers"
+            widget: object
+            fields:
+              - { name: homes, label: "Total homes", widget: string }
+              - { name: single_family, label: "Single-family", widget: string }
+              - { name: townhomes, label: "Townhomes", widget: string }

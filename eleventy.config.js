@@ -136,7 +136,6 @@ export default function (eleventyConfig) {
     const text = md.render(String(s || "")).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&rsquo;|&lsquo;/g, "'").replace(/\s+/g, " ").trim();
     return text.length > max ? text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…" : text;
   });
-  eleventyConfig.addFilter("facebookShareUrl", (url) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
 
   // Meetings that belong on a calendar (skips "No meeting this month" entries)
   eleventyConfig.addFilter("calendarMeetings", (arr) =>

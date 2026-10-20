@@ -6,6 +6,7 @@
 {%- elif name == "dl" -%}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
 {%- elif name == "check" -%}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
 {%- elif name == "clock" -%}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+{%- elif name == "share" -%}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
 {%- elif name == "chev" -%}<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
 {%- endif -%}
 {%- endmacro -%}
@@ -71,10 +72,9 @@
 {%- endmacro -%}
 
 
-{#- Share buttons for a news post. On phones "Share" opens the phone's share sheet (pick Facebook, then the group); elsewhere it opens Facebook's share window. -#}
+{#- Share button for a news post: opens the device's share menu (Facebook, text, email, etc.); where that isn't available it copies the link. -#}
 {%- macro shareRow(url, title) -%}
 <div class="share-row">
-  <a class="btn dark" href="{{ url | facebookShareUrl }}" target="_blank" rel="noopener" data-share data-share-url="{{ url }}" data-share-title="{{ title }}">Share on Facebook</a>
-  <button type="button" class="btn outline" data-copy-link="{{ url }}">Copy link</button>
+  <button type="button" class="btn outline" data-share data-share-url="{{ url }}" data-share-title="{{ title }}">{{ icon("share") }} Share</button>
 </div>
 {%- endmacro -%}

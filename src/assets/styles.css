@@ -282,3 +282,4 @@ code.pass { font-family: ui-monospace, Consolas, monospace; background: var(--wh
 /* Share buttons on news posts */
 .share-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .share-row .btn { padding: 7px 14px; font-size: .92rem; }
+.share-row svg { vertical-align: -2px; }

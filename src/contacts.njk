@@ -11,19 +11,19 @@ permalink: /contacts.html
   <div class="container">
     <div class="grid cols-3">
       <div class="card">
-        <div class="eyebrow" style="color:var(--wheat-700);margin-bottom:8px">Property manager</div>
+        <div class="eyebrow">Property manager</div>
         <div class="person"><span class="avatar">{{ pm.name | initials }}</span><div><b>{{ pm.name }}</b><small>{{ pm.title }}, {{ pm.company }}</small></div></div>
         <p style="margin-top:14px"><a href="{{ pm.phone | telHref }}">{{ pm.phone }}</a><br><a href="mailto:{{ pm.email }}">{{ pm.email }}</a></p>
         <p class="small muted mb-0">Balances, payment plans, account questions. Resident Service Center: {{ pm.hours }}.</p>
       </div>
       <div class="card">
-        <div class="eyebrow" style="color:var(--wheat-700);margin-bottom:8px">HOA Board</div>
+        <div class="eyebrow">HOA Board</div>
         <div class="person role-lead"><span class="avatar">{{ contacts.board_contact.name | initials }}</span><div><b>{{ contacts.board_contact.name }}</b><small>{{ contacts.board_contact.role }}</small></div></div>
         <p style="margin-top:14px"><a href="mailto:{{ site.board_email }}">{{ site.board_email }}</a></p>
         <p class="small muted mb-0">Community questions, suggestions and Board matters.</p>
       </div>
       <div class="card">
-        <div class="eyebrow" style="color:var(--wheat-700);margin-bottom:8px">City of Aurora</div>
+        <div class="eyebrow">City of Aurora</div>
         {%- for c in contacts.city %}
         <p{% if loop.last %} class="mb-0"{% endif %}><b>{{ c.name }}</b>{% if c.role and c.role != "City of Aurora" %}, {{ c.role }}{% endif %}<br>
           {%- if c.phone %}<a href="{{ c.phone | telHref }}">{{ c.phone_display or c.phone }}</a>{% endif %}

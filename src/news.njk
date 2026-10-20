@@ -14,7 +14,7 @@ permalink: /news.html
         <div class="stack">
         {%- for p in news.posts | byDateDesc %}
         <article class="card">
-          <div class="eyebrow" style="color:var(--wheat-700);margin-bottom:8px">Posted {{ p.date | isoDate | niceDate }}</div>
+          <div class="eyebrow">Posted {{ p.date | isoDate | niceDate }}</div>
           <h3>{{ p.title }}</h3>
           <div class="prose-inline" style="margin-bottom:1em">{{ p.body | md | safe }}</div>
           {% if p.file %}{{ docList([{ file: p.file, title: p.file_label or "Attachment", note: "" }]) }}{% endif %}
@@ -24,7 +24,7 @@ permalink: /news.html
         <h2 style="margin-top:48px">Community events</h2>
         <div class="grid" style="gap:14px" id="events">
           {%- for e in news.events | byDateDesc %}{% set d = e.date | isoDate %}
-          <div class="card person" data-event-date="{{ d }}"><span class="avatar" style="border-radius:12px">{{ d | monthAbbr }}</span><div><b>{{ e.title }} <span class="tag done" data-past-tag hidden>Past</span></b><small style="display:block">{{ e.details }}</small></div></div>
+          <div class="card person" data-event-date="{{ d }}"><span class="avatar" style="border-radius:4px">{{ d | monthAbbr }}</span><div><b>{{ e.title }} <span class="tag done" data-past-tag hidden>Past</span></b><small style="display:block">{{ e.details }}</small></div></div>
           {%- endfor %}
         </div>
         <p class="small muted" style="margin-top:12px">Watch this page and our <a href="{{ site.facebook_url }}" target="_blank" rel="noopener">Facebook page</a> for upcoming events.</p>

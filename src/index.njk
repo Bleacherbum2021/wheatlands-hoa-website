@@ -9,9 +9,8 @@ identityWidget: true
 <section class="hero">
   <img class="hero-bg" src="/assets/img/hero-fall.jpg" alt="The Wheatlands entrance monument decorated with pumpkins and fall flowers">
   <div class="container">
-    <div class="eyebrow">Aurora, Illinois &middot; {{ site.stats.homes }} homes</div>
-    <h1>Welcome home to The Wheatlands</h1>
-    <p class="lede">Meeting schedules, assessment payments, governing documents and neighborhood news, all in one place.</p>
+    <h1>The Wheatlands</h1>
+    <p class="lede">{{ site.stats.homes }} homes on the east side of Aurora, Illinois. Meeting dates, assessments, forms and news from the Board.</p>
     <div class="btn-row">
       <a class="btn" href="/assessments.html">Pay your assessment</a>
       <a class="btn ghost" href="/meetings.html">Meeting schedule</a>
@@ -34,13 +33,12 @@ identityWidget: true
   <div class="container">
     <div class="grid cols-2" style="gap:40px;align-items:start">
       <div>
-        <div class="eyebrow" style="color:var(--wheat-700)">Coming up</div>
-        <h2>Join the next meeting</h2>
+        <h2>Next meeting</h2>
         <p class="muted">Meetings start at {{ meetings.time }}. {{ meetings.note }}</p>
         {{ nextMeeting(meetings.meetings, buildDate, meetings.time) }}
       </div>
       <div>
-        <div class="eyebrow" style="color:var(--wheat-700)">{{ n.eyebrow }}</div>
+        <div class="eyebrow">{{ n.eyebrow }}</div>
         <h2>{{ n.heading }}</h2>
         <div class="prose-inline">{{ n.body | md | safe }}</div>
         {% if n.callout %}<div class="callout" style="margin-top:1em">{{ n.callout | md | safe }}</div>{% endif %}
@@ -54,8 +52,7 @@ identityWidget: true
 <section class="section alt">
   <div class="container split">
     <div>
-      <div class="eyebrow" style="color:var(--wheat-700)">Our association</div>
-      <h2>A master association in southeast Aurora</h2>
+      <h2>About the association</h2>
       <p>Wheatlands Homeowners Association is a master association located in Will and Kendall counties on the east side of Aurora, Illinois. PreK–12 students attend Community Unit School District 308, the seventh-largest school district in Illinois.</p>
       <div class="stats">
         <div class="stat"><b>{{ site.stats.homes }}</b><span>Homes</span></div>
@@ -63,7 +60,7 @@ identityWidget: true
         <div class="stat"><b>{{ site.stats.townhomes }}</b><span>Townhomes</span></div>
       </div>
       <p>The Board works on your behalf to keep the community beautiful: maintaining ponds, fountains, lights, monuments and common grounds; caring for trees and common-area gardens; and supporting events like the community garage sale and Movie Under the Stars.</p>
-      <a class="btn outline" href="/about.html">Meet the Board</a>
+      <a href="/about.html">Meet the Board &rarr;</a>
     </div>
     <img src="/assets/img/monument-summer.jpg" alt="Wheatlands stone monument surrounded by evergreens and lavender in summer">
   </div>
@@ -71,8 +68,8 @@ identityWidget: true
 
 <section class="section">
   <div class="container">
-    <div class="section-head"><div class="eyebrow" style="color:var(--wheat-700)">From the Board</div><h2>Latest updates</h2></div>
+    <div class="section-head"><h2>Updates from the Board</h2></div>
     {{ updateList(news.updates | batch(4) | first) }}
-    <p style="margin-top:20px"><a class="btn outline" href="/news.html">All news &amp; events</a></p>
+    <p style="margin-top:18px"><a href="/news.html">All news and events &rarr;</a></p>
   </div>
 </section>

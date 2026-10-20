@@ -27,7 +27,7 @@ Every push to `main` builds and publishes automatically (about 20 s). Board-edit
 - `src/_includes/base.njk` (layout, nav, footer) and `macros.njk` (doc lists, next-meeting cards, minutes years, updates).
 - Pages: `index`, `about`, `meetings`, `assessments`, `documents`, `news`, `contacts`, `thanks` (`.njk`, permalinks `/x.html`).
 - `src/assets/site.js`: mobile menu; marks past meetings "Held", shows the soonest upcoming meeting card, labels past events (runs client-side, Central time, so the site stays current between builds).
-- `src/assets/styles.css`: design tokens on `:root` (wheat + prairie green, Fraunces + Public Sans). Reuse existing classes; don't add a framework.
+- `src/assets/styles.css`: design tokens on `:root` (wheat + prairie green, Source Serif 4 + Public Sans; flat, square-cornered, no shadows or uppercase labels). Reuse existing classes; don't add a framework.
 
 ## Rules
 

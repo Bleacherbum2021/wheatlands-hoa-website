@@ -18,6 +18,14 @@ identityWidget: true
   </div>
 </section>
 
+{%- for p in news.posts | byDateDesc %}{% if p.home_until and (p.home_until | isoDate) >= buildDate %}
+<section class="notice" data-until="{{ p.home_until | isoDate }}">
+  <div class="container">
+    <a href="/news/{{ p | postSlug }}.html"><span class="label">Reminder</span><b>{{ p.title }}</b><span class="text">{{ p.body | summary(180) }}</span><span class="go">Details &rarr;</span></a>
+  </div>
+</section>
+{%- endif %}{% endfor %}
+
 <section class="quick">
   <div class="container">
     <div class="grid cols-4">

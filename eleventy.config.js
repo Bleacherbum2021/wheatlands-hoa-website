@@ -133,8 +133,12 @@ export default function (eleventyConfig) {
   });
   // Plain-text summary of a markdown field (for link previews)
   eleventyConfig.addFilter("summary", (s, max = 200) => {
-    const text = md.render(String(s || "")).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&rsquo;|&lsquo;/g, "'").replace(/\s+/g, " ").trim();
-    return text.length > max ? text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…" : text;
+    const text = md.render(String(s || "")).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&rsquo;|&lsquo;/g, "'").replace(/\s+/g, " ").replace(/ ([.,;:!?])/g, "$1").trim();
+    if (text.length <= max) return text;
+    // Prefer ending on a whole sentence when one fits
+    const sentence = (text.slice(0, max + 1).match(/^.*[.!?](?=\s)/) || [""])[0];
+    if (sentence.length > max / 2) return sentence;
+    return text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…";
   });
 
   // Meetings that belong on a calendar (skips "No meeting this month" entries)

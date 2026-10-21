@@ -126,6 +126,15 @@ p { margin: 0 0 1em; }
 .card p:last-child { margin-bottom: 0; }
 
 /* Quick links (home page): a plain row of links, not floating cards */
+/* Home-page notice banner (news posts with "Show on home page until") */
+.notice { background: var(--wheat-100); border-bottom: 1px solid var(--line); }
+.notice + .notice { border-top: 0; }
+.notice a { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding: 14px 0; color: var(--ink); text-decoration: none; }
+.notice b { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--prairie-900); }
+.notice span { color: var(--ink-soft); font-size: .95rem; flex: 1 1 320px; }
+.notice .go { flex: 0 0 auto; color: var(--prairie-700); font-weight: 600; }
+.notice a:hover .go, .notice a:hover b { color: var(--wheat-700); }
+
 .quick { background: var(--bg); border-bottom: 1px solid var(--line); }
 .quick .grid { gap: 0; }
 .tile { display: block; padding: 22px 22px 22px 0; text-decoration: none; color: var(--ink); background: none; border: 0; border-radius: 0; box-shadow: none; }

@@ -73,6 +73,11 @@
     if (!shown) list.forEach(function (c) { if (c.getAttribute('data-meeting') === 'none') c.hidden = false; });
   });
 
+  // Home-page notices: hide once their "show until" day has passed
+  document.querySelectorAll('.notice[data-until]').forEach(function (el) {
+    if (el.getAttribute('data-until') < today) el.hidden = true;
+  });
+
   // Events: label ones that have already happened
   document.querySelectorAll('[data-event-date]').forEach(function (el) {
     if (el.getAttribute('data-event-date') < today) {

@@ -32,7 +32,7 @@ Local preview: `npm install && npm start`, then http://localhost:8080 (refreshes
 - `src/_data/*.json`: ALL editable content. The editor writes these files, so keep their shape stable and update `src/admin/config.yml` whenever a field is added, renamed or removed.
   - `meetings.json`: year, time, note, `meetings[]` (date ISO, title, type `open|work|none`, note, join_url, join_label, dial_in)
   - `minutes.json`: `years[]` with `entries[]` (label, file, note), portal_note, approval_note
-  - `news.json`: `posts[]`, `events[]`, `updates[]` (status `in-progress|done`; first four show on the home page)
+  - `news.json`: `posts[]` (optional `home_until`: shown in the home-page Reminder banner through that day; optional `archive_after`: moves to the collapsed "Past news" section after that day; both handled client-side by `site.js` between builds, so nothing needs removing by hand), `events[]`, `updates[]` (status `in-progress|done`; first four show on the home page)
   - `documents.json`: forms, governing, resolutions, budgets, sub_associations
   - `board.json`, `contacts.json`, `site.json` (property manager, board email, assessment notice, stats, links)
   - `redirects.json`: old Weebly URLs → new pages (rendered as meta-refresh stubs by `src/redirects.njk`)

@@ -133,7 +133,7 @@ export default function (eleventyConfig) {
   });
   // Plain-text summary of a markdown field (for link previews)
   eleventyConfig.addFilter("summary", (s, max = 200) => {
-    const text = md.render(String(s || "")).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&rsquo;|&lsquo;/g, "'").replace(/\s+/g, " ").trim();
+    const text = md.render(String(s || "")).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&rsquo;|&lsquo;/g, "'").replace(/\s+/g, " ").replace(/ ([.,;:!?])/g, "$1").trim();
     return text.length > max ? text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…" : text;
   });
 

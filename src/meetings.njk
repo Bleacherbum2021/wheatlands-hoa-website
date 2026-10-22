@@ -23,7 +23,7 @@ permalink: /meetings.html
         <p class="small muted" style="margin-top:14px">{{ meetings.note }}</p>
       </div>
       <div class="stack">
-        {{ nextMeeting(meetings.meetings, buildDate, meetings.time, siteUrl) }}
+        {{ nextMeeting(meetings.meetings, buildDate, meetings.time, siteUrl, site.facebook_group_url) }}
         <div class="card" id="calendar">
           <h3>Get meetings in your calendar</h3>
           <p>Subscribe once and every HOA meeting shows up in your calendar. When the Board adds or changes a meeting, your calendar updates on its own.</p>

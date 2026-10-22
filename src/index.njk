@@ -43,7 +43,7 @@ identityWidget: true
       <div>
         <h2>Next meeting</h2>
         <p class="muted">Meetings start at {{ meetings.time }}. {{ meetings.note }}</p>
-        {{ nextMeeting(meetings.meetings, buildDate, meetings.time, siteUrl) }}
+        {{ nextMeeting(meetings.meetings, buildDate, meetings.time, siteUrl, site.facebook_group_url) }}
       </div>
       <div>
         <div class="eyebrow">{{ n.eyebrow }}</div>

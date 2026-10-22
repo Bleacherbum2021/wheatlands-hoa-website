@@ -268,6 +268,7 @@ collections:
           - { name: portal_url, label: "Resident Portal link", widget: string }
           - { name: portal_documents_url, label: "Resident Portal documents link", widget: string }
           - { name: facebook_url, label: "Facebook page link", widget: string }
+          - { name: facebook_group_url, label: "Facebook group link", widget: string, required: false, hint: "Used by the board-only \u201cShare to Facebook group\u201d button on the next-meeting card" }
           - name: stats
             label: "Community numbers"
             widget: object

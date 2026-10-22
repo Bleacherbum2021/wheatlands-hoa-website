@@ -25,7 +25,7 @@
 {%- endmacro -%}
 
 {#- Next-meeting cards: one per upcoming meeting; site.js shows only the soonest. -#}
-{%- macro nextMeeting(meetings, buildDate, time, siteUrl) -%}
+{%- macro nextMeeting(meetings, buildDate, time, siteUrl, groupUrl) -%}
 {%- set list = meetings | byDate -%}
 {%- set first = meetings | firstUpcoming(buildDate) -%}
 {%- for m in list %}{% if m.type != "none" %}{% set d = m.date | isoDate %}
@@ -42,6 +42,25 @@
       <a class="btn outline" href="/meetings.html">Full schedule</a>
     </div>
     <p class="cal-links small">{{ icon("cal") }} Add to my calendar: <a href="{{ m | calFile }}" download>Outlook or Apple</a> &middot; <a href="{{ m | googleCalUrl(time, siteUrl) }}" target="_blank" rel="noopener">Google</a></p>
+    {%- if groupUrl %}
+    {%- set post -%}
+Wheatlands HOA: {{ m.title }}
+{{ d | longDate }} at {{ time }} CT
+{% if m.note %}{{ m.note }}. {% endif %}{% if m.type == "open" %}All homeowners are welcome.{% else %}Board work session, open to homeowners.{% endif %}
+{% if m.join_url %}
+Join: {{ m.join_url }}{% if m.dial_in %}
+{{ m.dial_in }}{% endif %}
+{% else %}
+The join link will be posted on the website before the meeting.
+{% endif %}
+Details and add to your calendar: {{ siteUrl }}/meetings.html
+    {%- endset %}
+    <div class="board-share" data-board-only hidden>
+      <p class="small"><b>Board only:</b> post this meeting to the Facebook group.</p>
+      <pre class="board-share-text">{{ post | trim }}</pre>
+      <button type="button" class="btn dark" data-group-share data-group-url="{{ groupUrl }}">Copy post &amp; open group</button>
+    </div>
+    {%- endif %}
   </div>
 </div>
 {%- endif %}{% endfor %}

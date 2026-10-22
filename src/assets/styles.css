@@ -299,3 +299,10 @@ code.pass { font-family: ui-monospace, Consolas, monospace; background: var(--wh
 .share-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .share-row .btn { padding: 7px 14px; font-size: .92rem; }
 .share-row svg { vertical-align: -2px; }
+
+/* Board-only "share to Facebook group" box (shown only when signed in to /admin) */
+.board-share { margin-top: 18px; padding: 14px 16px; background: var(--wheat-50); border: 1px dashed var(--wheat-500); border-radius: var(--radius); }
+.board-share[hidden] { display: none; }
+.board-share p { margin: 0 0 8px; }
+.board-share-text { white-space: pre-wrap; word-break: break-word; font-family: var(--sans); font-size: .9rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; margin: 0 0 12px; max-height: 220px; overflow: auto; }
+.board-share .btn { padding: 8px 14px; font-size: .92rem; }

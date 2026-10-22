@@ -26,6 +26,31 @@
     });
   });
 
+  // Board-only: show "share to Facebook group" when signed in to the board editor
+  // (the /admin sign-in stores the user in localStorage on this site)
+  var signedIn = false;
+  try { signedIn = !!window.localStorage.getItem('gotrue.user'); } catch (e) {}
+  if (signedIn) {
+    document.querySelectorAll('[data-board-only]').forEach(function (el) { el.hidden = false; });
+  }
+  document.querySelectorAll('[data-group-share]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var box = btn.closest('.board-share');
+      var text = box.querySelector('.board-share-text').textContent;
+      var label = btn.textContent, ok = false;
+      // Copy synchronously first so it still works after the new tab opens
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(text).catch(function () {}); ok = true; }
+      window.open(btn.getAttribute('data-group-url'), '_blank', 'noopener');
+      btn.textContent = ok ? 'Copied. Paste it in the group' : 'Copy the text above, then paste it in the group';
+      setTimeout(function () { btn.textContent = label; }, 4000);
+    });
+  });
+
   // Footer year
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

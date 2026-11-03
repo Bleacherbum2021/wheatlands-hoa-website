@@ -14,8 +14,8 @@ backend:
 
 publish_mode: editorial_workflow
 show_preview_links: true
-site_url: https://wheatlands-hoa.netlify.app
-display_url: https://wheatlands-hoa.netlify.app
+site_url: https://www.wheatlandshoa.org
+display_url: https://www.wheatlandshoa.org
 logo_url: /assets/img/favicon.svg
 
 # New uploads (PDFs, Word files, images) go here

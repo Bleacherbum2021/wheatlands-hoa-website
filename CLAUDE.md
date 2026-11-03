@@ -6,7 +6,7 @@ Public website of the Wheatlands Homeowners Association (991 homes, Aurora, IL).
 
 | What | Where |
 | --- | --- |
-| Live site | https://wheatlands-hoa.netlify.app (custom domain wheatlandshoa.org not yet pointed here; old site still on Weebly) |
+| Live site | https://www.wheatlandshoa.org (also https://wheatlands-hoa.netlify.app). DNS is at GoDaddy; the Weebly site is kept until the Board cancels it |
 | Repo | github.com/Bleacherbum2021/wheatlands-hoa-website, branch `main`. **Public** (Netlify's free plan only builds one contributor's commits on private repos), so never commit anything that shouldn't be on the public site, drafts included. Ignore the stray `wheatlands-hoa` repo; Netlify does not use it. |
 | Hosting | Netlify project `wheatlands-hoa`, site id `21ac6918-e487-4485-ba18-defaca57b937`, team `mhylek` (free plan) |
 | Board editor | `/admin` (Decap CMS 3.16.3, git-gateway + Netlify Identity, invite-only, editorial workflow) |
@@ -32,7 +32,7 @@ Local preview: `npm install && npm start`, then http://localhost:8080 (refreshes
 - `src/_data/*.json`: ALL editable content. The editor writes these files, so keep their shape stable and update `src/admin/config.yml` whenever a field is added, renamed or removed.
   - `meetings.json`: year, time, note, `meetings[]` (date ISO, title, type `open|work|none`, note, join_url, join_label, dial_in)
   - `minutes.json`: `years[]` with `entries[]` (label, file, note), portal_note, approval_note
-  - `news.json`: `posts[]`, `events[]`, `updates[]` (status `in-progress|done`; first four show on the home page)
+  - `news.json`: `posts[]` (optional `home_until`: shown in the home-page Reminder banner through that day; optional `archive_after`: moves to the collapsed "Past news" section after that day; both handled client-side by `site.js` between builds, so nothing needs removing by hand), `events[]`, `updates[]` (status `in-progress|done`; first four show on the home page)
   - `documents.json`: forms, governing, resolutions, budgets, sub_associations
   - `board.json`, `contacts.json`, `site.json` (property manager, board email, assessment notice, stats, links)
   - `redirects.json`: old Weebly URLs → new pages (rendered as meta-refresh stubs by `src/redirects.njk`)
@@ -56,6 +56,4 @@ Local preview: `npm install && npm start`, then http://localhost:8080 (refreshes
 
 ## Open items
 
-- The Architectural Change Form (.doc) was not in the Weebly export; `documents.json` still links to the copy on wheatlandshoa.org (Weebly). Get the file, add it to `src/uploads/docs/`, and update the link before Weebly is cancelled.
-- DNS cutover of wheatlandshoa.org to Netlify is pending. After it, update `site_url`/`display_url` in `src/admin/config.yml`.
 - The board email shown is Wheatlandshoa@gmail.com. The old Weebly site listed two other addresses; confirm with the Board before changing.

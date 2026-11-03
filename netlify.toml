@@ -10,3 +10,9 @@
   for = "/*.ics"
   [headers.values]
     Content-Type = "text/calendar; charset=utf-8"
+
+# The old Weebly copy of the form was a Word file; keep emailed links working
+[[redirects]]
+  from = "/uploads/7/2/1/6/7216816/wheatlands_architectural_change_form_2023.doc"
+  to = "/uploads/docs/wheatlands-architectural-change-form.pdf"
+  status = 301

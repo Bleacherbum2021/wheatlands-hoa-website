@@ -11,9 +11,8 @@ permalink: /news.html
     <div class="grid cols-2" style="gap:40px;align-items:start">
       <div>
         <h2>Neighborhood news</h2>
-        <div class="stack">
-        {%- for p in news.posts | byDateDesc %}
-        <article class="card">
+        {%- macro postCard(p) %}
+        <article class="card"{% if p.archive_after %} data-archive-after="{{ p.archive_after | isoDate }}"{% endif %}>
           <div class="eyebrow">Posted {{ p.date | isoDate | niceDate }}</div>
           {%- set postUrl = "/news/" + (p | postSlug) + ".html" %}
           <h3><a href="{{ postUrl }}" style="color:inherit;text-decoration:none">{{ p.title }}</a></h3>
@@ -21,8 +20,22 @@ permalink: /news.html
           {% if p.file %}{{ docList([{ file: p.file, title: p.file_label or "Attachment", note: "" }]) }}{% endif %}
           {{ shareRow(siteUrl + postUrl, p.title) }}
         </article>
+        {%- endmacro %}
+        {#- Posts with an "archive after" date move to Past news once it passes: at build time here, and in the browser (site.js) between builds #}
+        {%- set pastCount = 0 %}
+        <div class="stack" id="current-news">
+        {%- for p in news.posts | byDateDesc %}
+          {%- if p.archive_after and (p.archive_after | isoDate) < buildDate %}{% set pastCount = pastCount + 1 %}{% else %}{{ postCard(p) }}{% endif %}
         {%- endfor %}
         </div>
+        <details class="legal" id="past-news"{% if not pastCount %} hidden{% endif %}>
+          <summary>Past news</summary>
+          <div class="stack" style="padding:6px 0 10px">
+          {%- for p in news.posts | byDateDesc %}
+            {%- if p.archive_after and (p.archive_after | isoDate) < buildDate %}{{ postCard(p) }}{% endif %}
+          {%- endfor %}
+          </div>
+        </details>
         <h2 style="margin-top:48px">Community events</h2>
         <div class="grid" style="gap:14px" id="events">
           {%- for e in news.events | byDateDesc %}{% set d = e.date | isoDate %}

@@ -105,6 +105,7 @@ collections:
               - { name: file, label: "Attachment (optional)", widget: file, required: false, choose_url: false }
               - { name: file_label, label: "Attachment name", widget: string, required: false, hint: "e.g. “Meeting flyer”." }
               - { name: home_until, label: "Show on home page until (optional)", widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true, required: false, hint: "Pick a date to feature this post in a banner at the top of the home page. It disappears after that day. Leave blank for normal posts." }
+              - { name: archive_after, label: "Move to Past news after (optional)", widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true, required: false, hint: "For time-limited news. After this day the post moves into the collapsed “Past news” section on the News page by itself. Leave blank to keep it with current news." }
           - name: events
             label: "Community events"
             label_singular: "Event"

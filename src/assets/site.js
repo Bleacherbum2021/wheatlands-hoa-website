@@ -78,6 +78,17 @@
     if (el.getAttribute('data-until') < today) el.hidden = true;
   });
 
+  // News: move posts past their "archive after" day into Past news
+  var pastBox = document.getElementById('past-news');
+  if (pastBox) {
+    var pastList = pastBox.querySelector('.stack');
+    var expired = Array.prototype.slice.call(document.querySelectorAll('#current-news [data-archive-after]'))
+      .filter(function (el) { return el.getAttribute('data-archive-after') < today; });
+    // Newest first: insert ahead of anything archived at build time
+    expired.reverse().forEach(function (el) { pastList.insertBefore(el, pastList.firstChild); });
+    if (pastList.children.length) pastBox.hidden = false;
+  }
+
   // Events: label ones that have already happened
   document.querySelectorAll('[data-event-date]').forEach(function (el) {
     if (el.getAttribute('data-event-date') < today) {

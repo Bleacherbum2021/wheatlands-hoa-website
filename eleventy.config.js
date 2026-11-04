@@ -80,6 +80,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/uploads");
   eleventyConfig.addPassthroughCopy("src/admin");
+  eleventyConfig.addPassthroughCopy("src/favicon.ico");
+  eleventyConfig.addPassthroughCopy("src/apple-touch-icon.png");
 
   // Markdown in content fields (bold, links, line breaks)
   eleventyConfig.addFilter("md", (s) => (s ? md.render(String(s)) : ""));

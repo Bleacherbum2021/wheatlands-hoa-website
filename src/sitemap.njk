@@ -1,0 +1,15 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all %}
+{%- if item.url and item.url != "/thanks.html" %}
+  <url><loc>{{ siteUrl }}{{ item.url | replace('index.html', '') }}</loc></url>
+{%- endif %}
+{%- endfor %}
+{%- for post in news.posts %}
+  <url><loc>{{ siteUrl }}/news/{{ post | postSlug }}.html</loc></url>
+{%- endfor %}
+</urlset>

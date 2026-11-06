@@ -235,6 +235,7 @@ p { margin: 0 0 1em; }
 .update-list li { padding: 14px 0; border-bottom: 1px solid var(--line); }
 .update-list .dot { display: none; }
 .update-list .body { margin-top: 2px; }
+.update-list .updated { white-space: nowrap; }
 .update-list .body p { margin: 0; }
 
 /* Prose / legal text */

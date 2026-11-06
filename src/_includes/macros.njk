@@ -66,7 +66,7 @@
 {%- macro updateList(items) -%}
 <ul class="update-list">
 {%- for u in items %}
-  <li>{% if u.status == "done" %}<span class="dot done" title="Completed">{{ icon("check") }}</span>{% else %}<span class="dot" title="In progress">{{ icon("clock") }}</span>{% endif %}<div><b>{{ u.title }}</b> {% if u.status == "done" %}<span class="tag done">Done</span>{% else %}<span class="tag">In progress</span>{% endif %}<div class="muted body">{{ u.body | md | safe }}</div></div></li>
+  <li>{% if u.status == "done" %}<span class="dot done" title="Completed">{{ icon("check") }}</span>{% else %}<span class="dot" title="In progress">{{ icon("clock") }}</span>{% endif %}<div><b>{{ u.title }}</b> {% if u.status == "done" %}<span class="tag done">Done</span>{% else %}<span class="tag">In progress</span>{% endif %}{% if u.updated %} <span class="updated muted small">Updated <time datetime="{{ u.updated | isoDate }}">{{ u.updated | isoDate | niceDate }}</time></span>{% endif %}<div class="muted body">{{ u.body | md | safe }}</div></div></li>
 {%- endfor %}
 </ul>
 {%- endmacro -%}

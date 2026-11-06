@@ -120,7 +120,7 @@ collections:
             label: "Board updates"
             label_singular: "Board update"
             widget: list
-            summary: "{{fields.title}} ({{fields.status}})"
+            summary: "{{fields.title}} ({{fields.status}}, updated {{fields.updated}})"
             hint: "The first four appear on the home page. Drag to reorder."
             fields:
               - { name: title, label: "Topic", widget: string }
@@ -131,6 +131,7 @@ collections:
                 options:
                   - { label: "In progress", value: in-progress }
                   - { label: "Done", value: done }
+              - { name: updated, label: "Last updated", widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true, required: false, hint: "Change this whenever you edit this update. Shown next to the update on the site." }
               - { name: body, label: "Update", widget: markdown, buttons: [bold, link], editor_components: [], modes: [rich_text] }
 
   # ----------------------------------------------------------------- DOCUMENTS

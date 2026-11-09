@@ -19,12 +19,29 @@ Every push to `main` builds and publishes automatically (about 20 s). Board-edit
 Mike wants to see changes before they go live. For any site change:
 
 1. Commit to a new branch (`claude/<short-topic>`), push it, and open a pull request into `main` (REST API: `gh api repos/Bleacherbum2021/wheatlands-hoa-website/pulls -f head=… -f base=main -f title=… -f body=…`).
-2. Netlify builds a Deploy Preview for the pull request at `https://deploy-preview-<PR number>--wheatlands-hoa.netlify.app`. Wait for it, spot-check it, and send Mike that link.
+2. Netlify builds a Deploy Preview for the pull request at `https://deploy-preview-<PR number>--wheatlands-hoa.netlify.app`. Wait for it (check with the Netlify connector, not GitHub), spot-check it, and send Mike that link.
 3. Merge into `main` only after Mike approves. That is the publish.
 
 Group related changes into one pull request: each publish to `main` uses 15 of the free plan's 300 monthly credits, and running out takes the site offline until the next month. Deploy previews are not listed as costing credits. Notes-only changes (this file, README) can go straight to `main`.
 
 Local preview: `npm install && npm start`, then http://localhost:8080 (refreshes on save).
+
+### Go easy on GitHub
+
+The GitHub account was suspended 2026-11-06 to 11-09 after GitHub's abuse detection flagged a burst of activity from a Claude session (pushes, a pull request, a merge and commit-status polling every 10 seconds, all within minutes). To avoid a repeat:
+
+- Clone once per session, shallow. Batch edits locally, commit once, push once per change.
+- Check build and deploy status with the Netlify connector, never by polling GitHub (no `gh api …/statuses` loops).
+- No retry loops against GitHub. If a GitHub call fails, stop and tell Mike.
+- If GitHub is unavailable again: build the site and give Mike a zip to upload with the Netlify API (PowerShell `Invoke-RestMethod` POST to `/api/v1/sites/<site id>/deploys`, `Content-Type: application/zip`). Anything published that way must be ported back into this repo, or the next Git build undoes it.
+
+## Email consent drive
+
+- `/email-consent.html` (`src/email-consent.njk`) collects homeowners' written consent to email notices and e-voting (765 ILCS 160/1-85), using the Board's consent wording. Netlify form `email-consent`, thanks page `/email-consent-thanks.html`, paper form `/uploads/docs/wheatlands-email-consent-form.pdf`. One signature per home.
+- Until the Board and attorney approve it, both pages are `noindex` and `eleventyExcludeFromCollections` (kept out of the sitemap) and nothing links to them. To launch: remove both front-matter flags and add a home-page notice, a footer link in `base.njk` and a line under Forms on the Documents page.
+- Progress bar: `site.json` → `email_consent` (`count`, `updated`, `total`, `goal`), editable in /admin under Site settings. Count one sign-up per home: online submissions whose address is in `src/_data/hoa_addresses.json`, plus paper forms. Never publish which homes have or haven't signed up.
+- `hoa_addresses.json` holds the 994 street addresses from the resident directory (Nov 2026); the address field only accepts these. It includes 2211, 2241 and 2261 S Eola Rd, which may not be HOA homes (the site says 991). Never add owner names, emails or phones.
+- Amending the Declaration takes 75% of total votes (Declaration §10.02), about 744 of 991 homes; the page pitches sign-up around that. By-Laws are amended by 2/3 of the Directors (Article XII), not by homeowners.
 
 ## Build
 

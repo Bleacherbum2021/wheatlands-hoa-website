@@ -1,0 +1,108 @@
+---
+layout: base.njk
+title: Get HOA notices by email – The Wheatlands HOA
+description: Changing the Declaration takes 75% of all homes. Sign up to get HOA notices and ballots by email and vote online.
+permalink: /email-consent.html
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{#- Live at its URL but not linked anywhere until the Board and attorney approve it. To launch: remove noindex and eleventyExcludeFromCollections, and add links (home notice, footer, Documents page). -#}
+{%- set ec = site.email_consent -%}
+<section class="page-head"><div class="container"><h1>Your vote counts. Get it by email.</h1><p>Sign up to get HOA notices and ballots by email, and to vote online. It takes about two minutes.</p>
+<div class="vote-progress" data-count="{{ ec.count }}" data-total="{{ ec.total }}" data-goal="{{ ec.goal }}">
+  <div class="vp-head"><b><span class="vp-count">{{ ec.count }}</span> of {{ ec.total }} homes signed up</b><span>Goal: {{ ec.goal }} homes (75%)</span></div>
+  <div class="vp-track" role="progressbar" aria-label="Homes signed up" aria-valuemin="0" aria-valuemax="{{ ec.total }}" aria-valuenow="{{ ec.count }}"><div class="vp-fill"></div><div class="vp-goal" title="75% goal"></div></div>
+  <div class="vp-foot small muted"><span class="vp-left"></span> Updated {{ ec.updated | niceDate }}. Includes paper forms.</div>
+</div>
+<div class="btn-row" style="margin-top:18px"><a class="btn dark" href="#form">Sign up now</a><a class="btn outline" href="/uploads/docs/wheatlands-email-consent-form.pdf" target="_blank" rel="noopener">Paper form (PDF)</a></div></div></section>
+<section class="section">
+  <div class="container">
+    <div class="vote-stat">
+      <div class="big">75%</div>
+      <div>
+        <h2 class="mt-0">Changing our rules takes 75% of all homes</h2>
+        <p>To amend the <a href="/uploads/7/2/1/6/7216816/wheatlands_hoa_-_declaration.pdf" target="_blank" rel="noopener">Declaration</a>, our community's main rulebook, owners of at least <b>75% of all homes</b> must vote yes. That's about <b>{{ ec.goal }} of our {{ ec.total }} homes</b>. Reaching that many people with mailed ballots and in-person meetings is hard.</p>
+        <p class="mb-0"><b>Signing up lets you get the ballot by email and vote from your phone</b>, so homeowners can actually reach 75% when a change comes up.</p>
+      </div>
+    </div>
+    <div class="grid cols-3 benefits">
+      <div><b>Vote from anywhere</b><span>Get ballots by email and vote online. No meeting needed.</span></div>
+      <div><b>Hear about things sooner</b><span>Meeting notices, budgets and proposed changes, straight to your inbox.</span></div>
+      <div><b>Saves the HOA money</b><span>Less printing and postage, which helps keep assessments down.</span></div>
+    </div>
+  </div>
+</section>
+<section class="section alt anchor" id="form">
+  <div class="container">
+    <div style="max-width:720px">
+      <h2>Sign up</h2>
+      <p class="muted">One signature per home. If your household has more than one owner, one of you can sign for the home.</p>
+      <form class="form" name="email-consent" method="POST" action="/email-consent-thanks.html" data-netlify="true" netlify-honeypot="website">
+        <input type="hidden" name="form-name" value="email-consent">
+        <p hidden><label>Leave blank <input name="website"></label></p>
+        <div class="row">
+          <label>Owner name(s)<input name="owner_names" autocomplete="name" required></label>
+          <label>Property address <span class="hint">Start typing and pick your address</span><input name="property_address" id="ec-addr" list="ec-homes" autocomplete="off" placeholder="e.g. 2257 Bellingham Ln" required></label>
+        </div>
+        <div class="row">
+          <label>Email address<input type="email" name="email" id="ec-email" autocomplete="email" required></label>
+          <label>Confirm email<input type="email" name="confirm_email" id="ec-email2" autocomplete="email" required></label>
+        </div>
+        <details class="more-fields"><summary>Add a phone, fax or different mailing address (optional)</summary>
+          <div class="form">
+            <label>Daytime phone<input type="tel" name="daytime_phone" autocomplete="tel"></label>
+            <label>Mailing address <span class="hint">If different from the property address</span><input name="mailing_address"></label>
+            <label>Fax number<input type="tel" name="fax"></label>
+          </div>
+        </details>
+        <p class="small muted mb-0">Your email is used only for HOA business. Under Illinois law, another owner can ask to see member email addresses as part of the official records. Otherwise it won't be sold or shared.</p>
+        <label class="check pick"><input type="checkbox" name="consent_electronic_notice" value="Yes" required><span><b>Send me HOA notices and ballots by email</b><small>I consent to receive meeting notices, ballots, and other Association communications electronically (by email) in place of mailed or hand-delivered notices, in accordance with the Association’s 2015 Electronic Voting Resolution and 765 ILCS 160/1-85.</small></span></label>
+        <label class="check pick"><input type="checkbox" name="consent_electronic_voting" value="Yes"><span><b>Let me vote online</b> <span class="tag">Helps reach 75%</span><small>I consent to cast votes on stated proposals and Board elections using electronic means (email or an Association-selected electronic voting platform).</small></span></label>
+        <details class="legal"><summary>Full consent terms</summary>
+          <p>The undersigned owner(s) of The Wheatlands Homeowners Association (“Association”) do hereby consent to receive notices of meetings of the Association and any other communication from the Association by electronic mail (e-mail) at the e-mail address listed above instead of via U.S. mail or hand-delivered notices. I agree that transmission of a notice or other communication from the Association to the e-mail address listed above shall substitute fully for any notices required to be sent by U.S. mail or hand-delivery by the Association Declaration or otherwise required by law.</p>
+          <p>I(we) further understand and acknowledge that it is solely my responsibility to ensure that the Association is furnished with any changes to the e-mail address listed above. I(we) understand and agree that unless and until I(we) provide the Association with a revocation of this consent form or a new e-mail address, the Association shall be deemed to have complied with its notice requirements by delivering electronic notice to the e-mail address listed above.</p>
+          <p>I(we) understand, acknowledge and agree that by executing this consent form I(we) am agreeing to receive notices and other communications from the Association at the e-mail address listed above and <u>will not be receiving such notices and other communications via U.S. mail or by hand-delivery</u>. I(we) understand that I(we) am not required to execute this consent form and also understand that if I(we) do execute this consent form I(we) can revoke this consent at any time by providing the Association with a written statement of revocation.</p>
+          <p>Further, I(we) understand that in the event that the Association receives a written request from another member of the Association to inspect e-mail addresses, as may be required by law the e-mail address listed above may be inspected by a member of the Association.</p>
+          <p>You may revoke your electronic consent at any time by providing written notice to the Association. If you do not provide electronic authorization, the Association will continue to communicate with you by mail at no cost to you. <a href="/uploads/7/2/1/6/7216816/electronic_voting_resolution_2015.pdf" target="_blank" rel="noopener">2015 Electronic Voting Resolution</a></p>
+        </details>
+        <div class="row">
+          <label>Signature <span class="hint">Type your full name</span><input name="signature" autocomplete="off" required></label>
+          <label>Date<input name="signed_date" id="ec-date" readonly></label>
+        </div>
+        <p class="small muted mb-0">By signing, you agree to the full consent terms above.</p>
+        <div><button class="btn dark" type="submit">Sign up</button></div>
+      </form>
+      <p class="small muted" style="margin-top:28px"><b>Prefer mail?</b> You don't need to do anything. Paper notices continue at no cost to you. To sign up on paper, <a href="/uploads/docs/wheatlands-email-consent-form.pdf" target="_blank" rel="noopener">download the form</a> and mail it to The Wheatlands HOA, c/o RealManage, P.O. Box 803555, Dallas, TX 75380, or email a scan to <a href="mailto:wheatlan@ciramail.com">wheatlan@ciramail.com</a>. Questions? <a href="mailto:Wheatlandshoa@gmail.com">Wheatlandshoa@gmail.com</a> or <a href="tel:+16304745700">630-474-5700</a>.</p>
+    </div>
+  </div>
+</section>
+<datalist id="ec-homes">{% for a in hoa_addresses %}<option value="{{ a }}">{% endfor %}</datalist>
+<script>
+(function () {
+  var pb = document.querySelector('.vote-progress');
+  if (pb) {
+    var c = +pb.dataset.count, t = +pb.dataset.total, g = +pb.dataset.goal;
+    pb.querySelector('.vp-fill').style.width = Math.min(100, c / t * 100) + '%';
+    pb.querySelector('.vp-goal').style.left = (g / t * 100) + '%';
+    var left = g - c;
+    pb.querySelector('.vp-left').textContent = left > 0 ? left + ' more homes to reach the goal.' : 'Goal reached!';
+  }
+  var addr = document.getElementById('ec-addr'), opts = document.getElementById('ec-homes');
+  if (addr && opts) {
+    var homes = {};
+    Array.prototype.forEach.call(opts.options, function (o) { homes[o.value.toLowerCase()] = o.value; });
+    var fix = function () {
+      var v = addr.value.split(',')[0].replace(/\s+/g, ' ').trim().toLowerCase();
+      if (homes[v]) { addr.value = homes[v]; addr.setCustomValidity(''); }
+      else addr.setCustomValidity(addr.value ? 'Please pick your address from the list. If it isn\'t there, email Wheatlandshoa@gmail.com.' : '');
+    };
+    addr.addEventListener('change', fix); addr.addEventListener('blur', fix);
+    addr.form.addEventListener('submit', fix, true);
+  }
+  var date = document.getElementById('ec-date');
+  if (date) date.value = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Chicago' });
+  var a = document.getElementById('ec-email'), b = document.getElementById('ec-email2');
+  function check() { b.setCustomValidity(b.value && a.value.trim().toLowerCase() !== b.value.trim().toLowerCase() ? 'The two email addresses don\'t match.' : ''); }
+  if (a && b) { a.addEventListener('input', check); b.addEventListener('input', check); }
+})();
+</script>

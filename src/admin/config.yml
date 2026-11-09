@@ -277,3 +277,12 @@ collections:
               - { name: homes, label: "Total homes", widget: string }
               - { name: single_family, label: "Single-family", widget: string }
               - { name: townhomes, label: "Townhomes", widget: string }
+          - name: email_consent
+            label: "Email sign-up progress bar"
+            hint: "Shown at the top of /email-consent.html. Count one sign-up per home, online and paper."
+            widget: object
+            fields:
+              - { name: count, label: "Homes signed up", widget: number, value_type: int, min: 0 }
+              - { name: updated, label: "Last updated", widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true }
+              - { name: total, label: "Total homes", widget: number, value_type: int }
+              - { name: goal, label: "Goal (75% of homes)", widget: number, value_type: int }

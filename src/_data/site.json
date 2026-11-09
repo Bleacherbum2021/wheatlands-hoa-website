@@ -16,12 +16,18 @@
   "assessment_notice": {
     "eyebrow": "2026 Assessments",
     "heading": "No increase for 2026",
-    "body": "In 2024 we raised assessments for the first time in over 20 years, and again for 2025 to keep up with costs. The Board has worked hard to refine contracts and spend wisely, and **there is no assessment increase for 2026**.\n\n**For 2027, the Board has proposed a 5% increase** because of rising costs. The draft budget will be shared with homeowners in November, and the final vote is at the December 2 budget meeting. Send questions to the Board before then.",
+    "body": "In 2024 we raised assessments for the first time in over 20 years, and again for 2025 to keep up with costs. The Board has worked hard to refine contracts and spend wisely, and **there is no assessment increase for 2026**.\n\n**For 2027, the Board has proposed a 10% increase** because of rising costs. The draft budget will be shared with homeowners in November, and the final vote is at the December 2 budget meeting. Send questions to the Board before then.",
     "callout": "**Assessments are paid annually, due January 1.** Bills are mailed to homeowners the first week of December."
   },
   "stats": {
     "homes": "991",
     "single_family": "557",
     "townhomes": "434"
+  },
+  "email_consent": {
+    "count": 0,
+    "updated": "2026-11-06",
+    "total": 991,
+    "goal": 744
   }
 }

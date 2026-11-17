@@ -1,6 +1,8 @@
 import markdownIt from "markdown-it";
 
 const md = markdownIt({ html: false, linkify: true, typographer: true });
+// Keep smart quotes but skip symbol replacements, so "8.08(c)" doesn't become "8.08©".
+md.disable("replacements");
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

@@ -328,3 +328,8 @@ code.pass { font-family: ui-monospace, Consolas, monospace; background: var(--wh
 .vp-fill { height: 100%; width: 0; min-width: 6px; background: var(--prairie-700); border-radius: 7px; }
 .vp-goal { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--wheat-700); }
 .vp-foot { margin-top: 8px; }
+
+/* FAQ */
+.faq-list details.faq + details.faq { margin-top: 10px; }
+details.faq summary { font-family: var(--serif); font-size: 1.12rem; color: var(--prairie-900); }
+details.faq .prose p, details.faq .prose li { font-size: 1rem; color: var(--ink); }

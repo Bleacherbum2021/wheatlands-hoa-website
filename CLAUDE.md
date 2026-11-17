@@ -52,9 +52,10 @@ The GitHub account was suspended 2026-11-06 to 11-09 after GitHub's abuse detect
   - `news.json`: `posts[]` (optional `home_until`: shown in the home-page Reminder banner through that day; optional `archive_after`: moves to the collapsed "Past news" section after that day; both handled client-side by `site.js` between builds, so nothing needs removing by hand), `events[]`, `updates[]` (status `in-progress|done`; first four show on the home page)
   - `documents.json`: forms, governing, resolutions, budgets, sub_associations
   - `board.json`, `contacts.json`, `site.json` (property manager, board email, assessment notice, stats, links)
+  - `faq.json`: `intro` (markdown) and `questions[]` (`id` used as the `/faq.html#<id>` link, `question`, `answer` markdown). Links to a question open it (`site.js`). Editable in /admin under FAQ
   - `redirects.json`: old Weebly URLs → new pages (rendered as meta-refresh stubs by `src/redirects.njk`)
 - `src/_includes/base.njk` (layout, nav, footer) and `macros.njk` (doc lists, next-meeting cards, minutes years, updates).
-- Pages: `index`, `about`, `meetings`, `assessments`, `documents`, `news`, `contacts`, `thanks` (`.njk`, permalinks `/x.html`).
+- Pages: `index`, `about`, `meetings`, `assessments`, `documents`, `faq`, `news`, `contacts`, `thanks` (`.njk`, permalinks `/x.html`).
 - Calendar: `src/meetings-ics.njk` builds `/meetings.ics` (subscribable feed, all meetings) and `src/calendar-event.njk` builds `/calendar/<date>.ics` per meeting, both from `meetings.json`; filters `ics`, `calFile`, `googleCalUrl` in `eleventy.config.js`. Entries are one hour, Central time; `siteUrl` comes from Netlify's `URL`, so links follow the custom domain after cutover.
 - News posts: `src/news-post.njk` gives each `news.json` post its own page at `/news/<date>-<title-slug>.html` (slug from the `postSlug` filter) with Facebook link-preview tags; `shareRow` macro adds a Share button (device share menu, or copies the link where that isn't available). Changing a post's title or date changes its URL. Facebook doesn't allow apps to post to groups, so sharing to the HOA group is a manual tap.
 - `src/assets/site.js`: mobile menu; marks past meetings "Held", shows the soonest upcoming meeting card, labels past events (runs client-side, Central time, so the site stays current between builds).

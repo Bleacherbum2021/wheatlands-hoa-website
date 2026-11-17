@@ -60,7 +60,7 @@
       <div>
         <a class="brand" href="/">{{ mark | safe }}<span class="brand-text"><span class="brand-name">The Wheatlands</span><span class="brand-sub">Homeowners Association</span></span></a>
         <p>A master association of {{ site.stats.homes }} homes in southeast Aurora, Illinois.</p>
-        <p><a href="{{ site.facebook_url }}" rel="noopener" target="_blank">Follow us on Facebook &rarr;</a></p>
+        {% if site.facebook_url %}<p><a href="{{ site.facebook_url }}" rel="noopener" target="_blank">Follow us on Facebook &rarr;</a></p>{% endif %}
       </div>
       <div>
         <h4>Property Manager</h4>

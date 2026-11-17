@@ -269,7 +269,7 @@ collections:
           - { name: card_fee, label: "Credit card fee", widget: string }
           - { name: portal_url, label: "Resident Portal link", widget: string }
           - { name: portal_documents_url, label: "Resident Portal documents link", widget: string }
-          - { name: facebook_url, label: "Facebook page link", widget: string }
+          - { name: facebook_url, label: "Facebook page link (leave blank to hide)", widget: string, required: false }
           - name: stats
             label: "Community numbers"
             widget: object

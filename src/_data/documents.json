@@ -2,7 +2,7 @@
   "forms": [
     {
       "title": "Architectural Change Request",
-      "description": "Required for any change to the exterior of your home or property, including siding, roof, gutters, windows, doors, patios, decks, sidewalks, driveways, solar panels and in-ground pools. Above-ground pools are not allowed. Covered by [Section 9.07](#sec-907) of the Declaration.",
+      "description": "Required for any change to the exterior of your home or property, including siding, roof, gutters, windows, doors, patios, decks, sidewalks, driveways, solar panels and in-ground pools. Above-ground pools are not allowed.",
       "file": "/uploads/docs/wheatlands-architectural-change-form.pdf",
       "file_label": "Architectural Change Form",
       "file_note": "PDF"
@@ -59,6 +59,11 @@
       "title": "Short-Term Rental Resolution",
       "note": "Signed September 17, 2026",
       "file": "/uploads/7/2/1/6/7216816/09.17.2026.short_term_rental.v.signed.pdf"
+    },
+    {
+      "title": "Rules and Regulations: Violation Fines and Enforcement",
+      "note": "Signed February 18, 2026. Fine schedule, escalation and hearing process",
+      "file": "/uploads/docs/2026-02-18_rules_and_regulations_resolution.pdf"
     },
     {
       "title": "Charge to Delinquent Accounts",

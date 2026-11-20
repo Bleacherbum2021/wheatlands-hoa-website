@@ -89,6 +89,15 @@
     if (pastList.children.length) pastBox.hidden = false;
   }
 
+  // FAQ: open the question named in the link (#id), including links between questions
+  function openFromHash() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var el = id && document.getElementById(id);
+    if (el && el.tagName === 'DETAILS') { el.open = true; el.scrollIntoView(); }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
   // Events: label ones that have already happened
   document.querySelectorAll('[data-event-date]').forEach(function (el) {
     if (el.getAttribute('data-event-date') < today) {

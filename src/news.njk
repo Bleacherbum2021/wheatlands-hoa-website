@@ -42,7 +42,7 @@ permalink: /news.html
           <div class="card person" data-event-date="{{ d }}"><span class="avatar" style="border-radius:4px">{{ d | monthAbbr }}</span><div><b>{{ e.title }} <span class="tag done" data-past-tag hidden>Past</span></b><small style="display:block">{{ e.details }}</small></div></div>
           {%- endfor %}
         </div>
-        <p class="small muted" style="margin-top:12px">Watch this page and our <a href="{{ site.facebook_url }}" target="_blank" rel="noopener">Facebook page</a> for upcoming events.</p>
+        <p class="small muted" style="margin-top:12px">Watch this page{% if site.facebook_url %} and our <a href="{{ site.facebook_url }}" target="_blank" rel="noopener">Facebook page</a>{% endif %} for upcoming events.</p>
       </div>
       <div>
         <h2>Board updates</h2>

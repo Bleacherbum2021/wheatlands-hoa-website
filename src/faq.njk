@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: FAQ – The Wheatlands HOA
+description: Answers to common Wheatlands HOA questions about assessments, violations and fines, fences, short-term rentals and exterior changes.
+permalink: /faq.html
+---
+{%- from "macros.njk" import pageHead -%}
+{{ pageHead("Frequently Asked Questions", "Quick answers about assessments, rules and how the Board works.") }}
+<section class="section">
+  <div class="container" style="max-width:820px">
+    <div class="prose" style="margin-bottom:24px">{{ faq.intro | md | safe }}</div>
+    <div class="faq-list">
+      {%- for q in faq.questions %}
+      <details class="legal faq anchor" id="{{ q.id }}">
+        <summary>{{ q.question }}</summary>
+        <div class="prose">{{ q.answer | md | safe }}</div>
+      </details>
+      {%- endfor %}
+    </div>
+    <div class="card" style="margin-top:32px">
+      <h3>Still have a question?</h3>
+      <p class="mb-0">Email the Board at <a href="mailto:{{ site.board_email }}">{{ site.board_email }}</a>, <a href="/contacts.html#question">send a question</a>, or come to an <a href="/meetings.html">open meeting</a>. For account and payment questions, contact {{ site.property_manager.company }} at <a href="{{ site.property_manager.phone | telHref }}">{{ site.property_manager.phone }}</a>.</p>
+    </div>
+  </div>
+</section>

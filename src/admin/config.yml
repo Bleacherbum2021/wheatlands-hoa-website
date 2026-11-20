@@ -194,6 +194,28 @@ collections:
               - { name: note, label: "Small note (e.g. date passed)", widget: string, required: false }
               - { name: file, label: "File", widget: file, choose_url: false }
 
+  # ----------------------------------------------------------------------- FAQ
+  - name: faq
+    label: "FAQ"
+    description: "Questions and answers on the FAQ page."
+    editor: { preview: false }
+    files:
+      - name: faq
+        label: "FAQ page"
+        file: src/_data/faq.json
+        fields:
+          - { name: intro, label: "Intro text", widget: markdown, buttons: [bold, link], editor_components: [], modes: [rich_text] }
+          - name: questions
+            label: "Questions"
+            label_singular: "Question"
+            widget: list
+            summary: "{{fields.question}}"
+            hint: "Shown in this order. Drag to reorder."
+            fields:
+              - { name: id, label: "Link name", widget: string, hint: "Short, lowercase, dashes (e.g. short-term-rentals). Makes a link like /faq.html#short-term-rentals. Changing it breaks existing links." }
+              - { name: question, label: "Question", widget: string }
+              - { name: answer, label: "Answer", widget: markdown, buttons: [bold, italic, link, bulleted-list, numbered-list], editor_components: [] }
+
   # ---------------------------------------------------------- PEOPLE & SETTINGS
   - name: people
     label: "Board & Contacts"
@@ -269,7 +291,7 @@ collections:
           - { name: card_fee, label: "Credit card fee", widget: string }
           - { name: portal_url, label: "Resident Portal link", widget: string }
           - { name: portal_documents_url, label: "Resident Portal documents link", widget: string }
-          - { name: facebook_url, label: "Facebook page link", widget: string }
+          - { name: facebook_url, label: "Facebook page link (leave blank to hide)", widget: string, required: false }
           - name: stats
             label: "Community numbers"
             widget: object

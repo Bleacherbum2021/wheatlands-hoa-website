@@ -1,0 +1,50 @@
+{
+  "intro": "Answers to the questions homeowners ask most often. Don't see yours? Email the Board at the address below or [send us a question](/contacts.html#question).",
+  "questions": [
+    {
+      "id": "assessment-increase",
+      "question": "Why are assessments going up 10% for 2027, and when was it discussed?",
+      "answer": "Costs have risen across several parts of the budget. When the Board presented the preliminary 2027 budget at the **September 16, 2026 Fall Meeting**, it noted higher legal and collection costs (about $36,000, from the Board's push to collect delinquent accounts), a 10% rise in part of the insurance coverage, finishing the monument lighting project, and a larger reserve fund contribution ($25,000, up from $23,000).\n\nThe increase was discussed publicly at these open meetings:\n\n- **September 16, 2026 (Fall Meeting):** preliminary 2027 budget presented with a proposed 5% increase. [Read the minutes](/meetings.html#minutes).\n- **October 21, 2026 (Open Meeting):** the Board raised the proposed increase to 10%.\n- **December 2, 2026 (Budget Approval Meeting):** final vote on the 2027 budget. All homeowners are welcome.\n\nIn 2024 assessments went up for the first time in over 20 years, and there was no increase for 2026. Budgets are on the [Assessments page](/assessments.html#budget)."
+    },
+    {
+      "id": "unpaid-assessments",
+      "question": "What happens if an assessment isn't paid?",
+      "answer": "Assessments are due **January 1** each year. Every home's share pays for the whole community, so the Board has a duty to collect unpaid balances.\n\n- Late payments may be charged late fees.\n- Unpaid accounts may be turned over to the Association's attorneys for collection.\n- Under Board Policy 2025-12 (January 2026), administrative charges from the collection process are added to the owner's assessment account. See [Charge to Delinquent Accounts](/documents.html#resolutions).\n\nThe Board reviews delinquent accounts in executive session, not in open meetings, so individual balances are never discussed publicly."
+    },
+    {
+      "id": "cant-pay",
+      "question": "What if I can't pay my assessment?",
+      "answer": "If you're having trouble paying, contact our property manager, **RealManage**, as soon as you can, ideally before the due date. Payment plans are available, and the Board handles each situation case by case. Contact details are on the [Assessments page](/assessments.html#pay)."
+    },
+    {
+      "id": "violations",
+      "question": "How does the violation and fine process work?",
+      "answer": "The Board enforces the Declaration, By-Laws and Rules and Regulations using the fine and hearing process in the [Resolution to Adopt Rules and Regulations](/uploads/docs/2026-02-18_rules_and_regulations_resolution.pdf) (February 18, 2026). Unless a rule sets its own fine:\n\n- **1st violation** of the same rule within 12 months: written warning\n- **2nd violation** within 12 months of the warning: $50 fine\n- **3rd violation** within 12 months of the second notice: $100 fine\n\n**Ongoing violations** (for example, a fence that needs repair) get a written notice with 28 days to fix it. If it isn't fixed, there's a $50 fine and another 28 days. After that, $100 is charged every 28 days until it's corrected.\n\n**Disagree with a notice?** Send a written request for a hearing within 14 days of receiving it. The hearing is held at the next regularly scheduled Board meeting, and no fine is due until the Board decides. If no hearing is requested within 14 days, the notice stands.\n\nFines and charges are due within 30 days and are collected like assessments. Failure to fix a violation can also lead to legal action or the Board correcting it, with all costs, including attorneys' fees and court costs, charged to the owner's account."
+    },
+    {
+      "id": "report-violation",
+      "question": "How do I report a possible violation?",
+      "answer": "Send it **in writing** to our property manager, RealManage, at [wheatlan@ciramail.com](mailto:wheatlan@ciramail.com). Under the Rules and Regulations, a complaint needs to include:\n\n- Your name, address and phone number, and the date\n- The address of the home involved\n- What happened, including the date, time and location\n- A statement that you'll cooperate with the enforcement process, including a hearing if one is needed\n\nThe Board can only enforce the Association's Declaration, By-Laws and Rules and Regulations. City code issues go to the City of Aurora's [Division of Property Standards](https://www.aurora.il.us/Property-Business/Property-Violations-and-Complaints) through [myAurora 311](https://www.aurora.il.us/City-Services/Report-a-Problem/myAurora-311) (call 311 or 630-256-4636)."
+    },
+    {
+      "id": "fences",
+      "question": "How are fence complaints handled?",
+      "answer": "Fence rules are in [Section 8.08(c) of the Declaration](/documents.html#sec-808), and since January 1, 2026, damaged fencing must be repaired promptly. Fence complaints go through the same [violation and fine process](#violations) as any other rule. To report a fence problem, follow the steps under [How do I report a possible violation?](#report-violation)\n\nPutting up a new fence, or changing or repairing an existing one, needs an approved [Fence Architectural Change Form](/documents.html#forms) first.\n\n**City of Aurora rules are separate.** A fence can break City code, HOA rules, or both. The City handles its own violations: report them through [myAurora 311](https://www.aurora.il.us/City-Services/Report-a-Problem/myAurora-311) (call 311 or 630-256-4636). City fines are set by a hearing officer, lower if the problem is fixed by the City's deadline and higher if it isn't. See the City's [Administrative Hearings for Code Enforcement](https://www.aurora.il.us/Property-Business/Property-Violations-and-Complaints/Fix-a-Property-Violation/Administrative-Hearings-for-Code-Enforcement) page."
+    },
+    {
+      "id": "short-term-rentals",
+      "question": "Are short-term rentals like Airbnb allowed?",
+      "answer": "No. In its [Short-Term Rental Resolution](/documents.html#resolutions) (September 17, 2026), the Board determined that short-term rental of a home is a commercial use, which Section 8.01 of the Declaration doesn't allow. Any rental must be for **at least 30 days**.\n\nShort-term rentals are handled through the [violation and fine process](#violations). Under the Rules and Regulations, failure to fix a violation can result in legal action, with all costs, including attorneys' fees and court costs, charged to the owner's account. To report a suspected short-term rental, see [How do I report a possible violation?](#report-violation)"
+    },
+    {
+      "id": "exterior-changes",
+      "question": "Do I need HOA approval for a shed, solar panels or other exterior project?",
+      "answer": "Only for some projects. Submit an [Architectural Change Request](/documents.html#forms) **before** work starts if you're adding:\n\n- **A detached structure**, temporary or permanent, such as a storage shed, greenhouse, play set, fountain, trailer or detached garage (Declaration Section 8.08(b))\n- **Solar panels** (see the Solar Declaration Amendment on the [Documents page](/documents.html#governing))\n- **A fence**, or a change or repair to one, using the separate [Fence Architectural Change Form](/documents.html#forms)\n\n**No HOA approval is needed** for changes to the home itself, such as new windows, doors or siding, or an attached addition. Above-ground pools are not allowed.\n\nSend the form, with a drawing or photo showing the location and dimensions, to RealManage at [wheatlan@ciramail.com](mailto:wheatlan@ciramail.com) or by mail (the address is on the form). City of Aurora permits may still be required either way."
+    },
+    {
+      "id": "board-email",
+      "question": "I emailed the Board. When will I hear back?",
+      "answer": "The Board's email is checked every day, and everyone gets a reply, usually within a day or two. Replies may be signed by a Board member or by \"The Wheatlands HOA Board.\" Board members are volunteer homeowners, so thanks for your patience.\n\nFor questions about your account, balance or payments, contact RealManage directly (see the [Assessments page](/assessments.html#pay))."
+    }
+  ]
+}
